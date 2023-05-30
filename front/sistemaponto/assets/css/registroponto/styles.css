@@ -1,0 +1,40 @@
+.main-container {
+  height: calc(100vh - 56px);
+  width: 85vw;
+
+  margin: 0 auto;
+}
+
+/* Estilos para a tabela */
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+}
+
+/* Estilos para o cabeçalho da tabela */
+.cabecalho-tabela {
+  background-color: #f2f2f2;
+}
+
+.cabecalho-tabela th {
+  padding: 12px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Estilos para as linhas da tabela */
+.linha-tabela:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.linha-tabela td {
+  padding: 12px;
+  height: 36px;
+  text-align: center;
+}
+
+/* Estilos para as colunas da tabela */
+.coluna-tabela {
+  text-align: left;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/login/styles.css" />
+    <script type="module" src="/assets/js/util/axios.min.js"></script>
+    <title>Sistema Ponto - Lar Batista Esperança</title>
+  </head>
+  <body>
+
+    <main class="login-container">
+      <h1 class="login-title">Bem vindo(a), efetue seu login abaixo:</h1>
+      <form class="login-form" id="loginForm">
+        <label class="login-label">
+          Login:
+          <input
+            class="login-input"
+            type="text"
+            id="loginInput"
+            autocomplete="off"
+          />
+        </label>
+        <label class="login-label">
+          Senha:
+          <input
+            class="login-input"
+            type="password"
+            id="senhaInput"
+            autocomplete="off"
+          />
+        </label>
+        <button class="login-button" type="submit">Acessar</button>
+      </form>
+    </main>
+
+    <script src="./assets/js/login.js"></script>
+  </body>
+</html>

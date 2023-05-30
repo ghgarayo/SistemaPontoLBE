@@ -1,0 +1,83 @@
+.main-container{
+  height: calc(100vh - 56px);
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+
+  width: 40vw;
+  height: 30vh;
+  
+  background-color: #012c6d;
+  
+  padding: 1.5rem;
+  border: 2px solid #fba02e;
+  border-radius: 15px;
+
+}
+
+
+.detalhes-usuario-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.info-usuario,
+.nome-usuario,
+.email-usuario{
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.registro-ponto-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.alert{
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+
+  filter: invert(74%) sepia(63%) saturate(1828%) hue-rotate(335deg) brightness(99%) contrast(98%);
+}
+
+
+
+.registro-ponto-title,
+.data-hora{
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+
+.botao-ponto{
+  justify-self: center;
+  margin-bottom: 12px;
+
+  background-color: #67c7e1;
+  padding: 6px 8px;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 15px;
+}
+
+.botao-ponto:hover{
+  background-color: #5cb3e6;
+}

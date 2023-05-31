@@ -41,12 +41,12 @@ if (decodedPayload && decodedPayload.admin) {
       icon: "home",
     },
     {
-      name: "Registro de Ponto",
+      name: "Relatório de Ponto",
       url: "/pages/registroponto.html",
       icon: "list",
     },
     {
-      name: "Cadastrar Funcionários",
+      name: "Cadastrar Funcionário",
       url: "/pages/cadastrofuncionario.html",
       icon: "cadastro-funcionario",
     },
@@ -56,14 +56,14 @@ if (decodedPayload && decodedPayload.admin) {
       icon: "funcionarios",
     },
     {
-      name: "Ponto Funcionários",
+      name: "Relatório Ponto Funcionários",
       url: "/pages/pontofuncionarios.html",
-      icon: "funcionarios",
+      icon: "list",
     },
     {
       name: "Solicitações Ajustes",
       url: "/pages/solicitacoesajuste.html",
-      icon: "funcionarios",
+      icon: "ajuste-calendario",
     },
   ];
 } else {
@@ -74,7 +74,7 @@ if (decodedPayload && decodedPayload.admin) {
       icon: "home",
     },
     {
-      name: "Registro de Ponto",
+      name: "Relatório de Ponto",
       url: "/pages/registroponto.html",
       icon: "list",
     },

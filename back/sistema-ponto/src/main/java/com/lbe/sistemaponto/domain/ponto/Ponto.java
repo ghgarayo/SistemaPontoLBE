@@ -84,7 +84,7 @@ public class Ponto {
       return;
     }
 
-    throw new Error("Já foram efetuados os registros para a data " + dataCompleta.getDayOfMonth());
+    throw new Error("Já foram efetuados os registros para o dia " + dataCompleta.getDayOfMonth());
 
   }
 

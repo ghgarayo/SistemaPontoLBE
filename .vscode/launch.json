@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SistemaPontoApplication<sistema-ponto>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.lbe.sistemaponto.SistemaPontoApplication",
+      "projectName": "sistema-ponto",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

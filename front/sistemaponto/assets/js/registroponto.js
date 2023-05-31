@@ -1,178 +1,8 @@
-// let token = sessionStorage.getItem("token");
-// let decodedPayload = "";
+if (!token) {
+  window.location.href = "/index.html";
+}
 
-// if (!token) {
-//   window.location.href = "/index.html";
-// } else {
-//   decodedPayload = JSON.parse(atob(token.split(".")[1]));
-// }
-
-// let usuario = {
-//   email: decodedPayload.sub,
-//   nome: decodedPayload.nome,
-//   admin: decodedPayload.admin,
-// };
-
-// let headers = {
-//   Authorization: `Bearer ${token}`,
-// };
-
-// axios
-//   .get(`http://localhost:8080/api/registro-ponto/${usuario.email}`, { headers })
-//   .then((response) => {
-//     if (response.data.length > 0) {
-//       data = response.data;
-//     }
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-
-const URL = "http://localhost:8080";
-
-let data = [
-  {
-    content: [
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      },
-      {
-        dataCompleta: "2023-04-30",
-        horarioEntrada1: "16:19:17",
-        latitudeEntrada1: "-25.4997715",
-        longitudeEntrada1: "-49.2511995",
-        horarioSaida1: "16:19:22",
-        latitudeSaida1: "-25.4997715",
-        longitudeSaida1: "-49.2511995",
-        horarioEntrada2: "16:19:25",
-        latitudeEntrada2: "-25.4997715",
-        longitudeEntrada2: "-49.2511995",
-        horarioSaida2: "16:19:28",
-        latitudeSaida2: "-25.4997715",
-        longitudeSaida2: "-49.2511995",
-      }
-    ],
-  },
-];
-
-let columnItems = [
+const columnItems = [
   { title: "Data", key: "dataCompleta" },
   { title: "Entrada 1", key: "horarioEntrada1" },
   { title: "Latitude", key: "latitudeEntrada1" },
@@ -188,40 +18,64 @@ let columnItems = [
   { title: "Longitude", key: "longitudeSaida2" },
 ];
 
-let createTable = (data) => {
+// Realizar a chamada GET usando fetch
+fetch(`${URL}/api/registro-ponto/${usuario.email}`, {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Ocorreu um erro ao obter os dados.");
+    }
+  })
+  .then((data) => {
+    document.querySelector(".main-container").innerHTML = createHTML(data);
+  })
+  .catch((error) => {
+    console.log(error);
+    // Tratar o erro de forma adequada
+  });
+
+function createHTML(data) {
   let html = `
-    <table class=\"tabela\">
-      <thead class=\"cabecalho-tabela\">
-        <tr>
-  `;
+      <div class="container">
+        <div class="cabecalho-tabela">
+          <h1>Registro de Ponto</h1>
+        </div>
+        <div class="header-tabela">
+          <ul class="coluna-tabela">
+    `;
 
-  // Criar o cabeçalho da tabela com base nos itens de coluna definidos
+  // Criar os itens de cabeçalho com base nos itens de coluna definidos
   columnItems.forEach((column) => {
-    html += `<th classe=\"coluna-tabela\">${column.title}</th>`;
+    html += `<li class="item-header-tabela">${column.title}</li>`;
   });
 
   html += `
-        </tr>
-      </thead>
-      <tbody>
-  `;
+          </ul>
+        </div>
+        <div class="dados-tabela">
+          <ul class="lista-tabela">
+    `;
 
-  // Preencher os dados da tabela com base nos objetos do conteúdo
-  data[0].content.forEach((item) => {
-    html += `<tr classe=\"linha-tabela\">`;
+  // Preencher os dados com base nos objetos do conteúdo
+  data.content.forEach((item) => {
+    html += `<li class="item-tabela">`;
     columnItems.forEach((column) => {
-      html += `<td >${item[column.key]}</td>`;
+      html += `<span class="value">${item[column.key]}</span>`;
     });
-    html += "</tr>";
+    html += "</li>";
   });
 
   html += `
-      </tbody>
-    </table>
-  `;
+          </ul>
+        </div>
+      </div>
+    `;
 
   return html;
-};
-
-document.querySelector(".main-container").innerHTML = createTable(data);
-
+}

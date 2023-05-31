@@ -1,0 +1,81 @@
+.main-container {
+  height: calc(100vh - 56px);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.formulario-cadastro {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 72px;
+  background-color: #012c6d;
+  padding: 1.5rem;
+  border: 2px solid #fba02e;
+  border-radius: 15px;
+  height: fit-content;
+  width: 50vw;
+  margin: auto;
+
+}
+
+.funcionario-info,
+.funcionario-endereco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-top: 12px;
+  display: flex;
+  text-align: start;
+  font-weight: 500;
+  color: #FFF
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"]{
+  width: 80%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+input[type="checkbox"] {
+  
+}
+
+.admin-container{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 4px;
+  align-items: baseline;
+  margin-top: 12px
+}
+
+.botao-cadastro {
+  grid-row: 2;
+  grid-column: span 2;
+  padding: 8px 16px;
+  width: 33%;
+  
+  cursor: pointer;
+  color: #FFF;
+  
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+
+  margin: 0 auto;
+
+}
+
+botao-cadastro:hover {
+  background-color: #45a049;
+}

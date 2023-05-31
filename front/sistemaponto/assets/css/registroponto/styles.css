@@ -1,40 +1,93 @@
-.main-container {
-  height: calc(100vh - 56px);
-  width: 85vw;
-
-  margin: 0 auto;
-}
-
-/* Estilos para a tabela */
-.tabela {
+.container {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 32px;
+  max-width: 75vw;
+  margin: 64px auto 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-/* Estilos para o cabeçalho da tabela */
-.cabecalho-tabela {
-  background-color: #f2f2f2;
+.cabecalho-tabela{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #012c6d;
+
+  padding: 12px 0;
+
 }
 
-.cabecalho-tabela th {
-  padding: 12px;
-  font-weight: bold;
-  text-align: left;
-}
-
-/* Estilos para as linhas da tabela */
-.linha-tabela:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.linha-tabela td {
-  padding: 12px;
-  height: 36px;
+.header-tabela {
+  display: flex;
   text-align: center;
+  background-color: #012c6d;
 }
 
-/* Estilos para as colunas da tabela */
 .coluna-tabela {
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
 }
+
+.item-header-tabela {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  width: calc(100% / 13);
+  padding: 2px;
+  font-weight: 500;
+  margin: 0 8px;
+
+  border-radius: 5px;
+
+  color: #FFF
+}
+
+.data,
+.content {
+  margin-bottom: 20px;
+}
+
+.lista-tabela {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-tabela {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.item-tabela:nth-child(even){
+  background-color: #CCC
+}
+
+
+.value {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  
+  width: calc(100% / 13);
+  padding: 4px;
+  font-weight: 500;
+  margin: 0 8px;
+  
+  background-color: #fff;
+  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+

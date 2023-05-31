@@ -1,20 +1,9 @@
-let token = sessionStorage.getItem("token");
-let decodedPayload = "";
-
 if (!token) {
   window.location.href = "/index.html";
-} else {
-  decodedPayload = JSON.parse(atob(token.split(".")[1]));
-}
+} 
 
 console.log(token)
 console.log(decodedPayload)
-
-let usuario = {
-  email: decodedPayload.sub,
-  nome: decodedPayload.nome,
-  admin: decodedPayload.admin,
-};
 
 let boasVindas = () => {
   let html = `
@@ -26,7 +15,7 @@ let boasVindas = () => {
                       
                       <div class =\"registro-ponto-container\">
                                 <img class= \"alert\" src=\"/assets/img/alerta.svg\">
-                                <h3 class =\"registro-ponto-title\"> Confira seu horário antes de efetuar o registro do ponto </h3>
+                                <h3 class =\"registro-ponto-title\"> Confira seu horário antes de registrar o ponto! </h3>
                                 <button class=\"botao-ponto\" onclick="registrarBatida()">Registrar Batida de Ponto</button>
                                 <p class= \"data-hora\" id=\"data-hora\"></p>
                       </div>
@@ -59,23 +48,29 @@ function registrarBatida() {
         };
 
         let headers = {
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
         };
 
-        console.log(registroPonto);
-
-        axios.post("http://localhost:8080/api/registro-ponto", registroPonto, {
-            headers,
+        fetch("http://localhost:8080/api/registro-ponto", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(registroPonto)
           })
           .then(function (response) {
-            // Exibir resposta do servidor
-            console.log(response.data);
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Ocorreu um erro ao registrar a batida de ponto.");
+            }
+          })
+          .then(function (data) {
+            console.log(data);
             alert("Batida de ponto registrada com sucesso!");
           })
           .catch(function (error) {
-            // Tratar erros
             console.log(error);
-            alert("Ocorreu um erro ao registrar a batida de ponto.");
+            alert(error.message);
           });
       },
       function (error) {

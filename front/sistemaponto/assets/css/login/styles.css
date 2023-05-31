@@ -6,14 +6,17 @@ body {
 
   width: 100vw;
   height: 100vh;
+
+  background-color: #CCC
+
 }
 
 .login-container {
   display: flex;
   flex-direction: column;
 
-  width: 40vw;
-  height: 15vw;
+  width: 25vw;
+  height: 25vh;
 
   padding: 4.5rem;
   border: 2px solid #fba02e;

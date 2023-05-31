@@ -36,10 +36,10 @@ public class RegistroPontoController {
     public ResponseEntity registrarBatidaPonto(@RequestBody @Valid DadosBatidaPonto dados,
             UriComponentsBuilder uriBuilder) {
 
-        Ponto registroPonto = repository.findByDataCompleta(dados.dataCompleta());
+        Ponto registroPonto = repository.findByDataCompletaAndLogin(dados.dataCompleta(), dados.login());
         System.out.println(registroPonto);
 
-        if (registroPonto == null) {
+        if (registroPonto == null || !registroPonto.getLogin().equalsIgnoreCase(dados.login())) {
             var dadosBatida = new Ponto(dados);
             var uri = uriBuilder.path("/ponto/{id}").buildAndExpand(dadosBatida.getId()).toUri();
             repository.save(dadosBatida);
@@ -53,9 +53,9 @@ public class RegistroPontoController {
     }
 
     @GetMapping("/{login}")
-    public ResponseEntity<Page<DadosListagemPonto>> listarRegistrosPorLogin(@PathVariable String login, 
-    @PageableDefault(size = 30, sort = { "dataCompleta" }) Pageable paginacao) {
-        var registrosPonto = repository.findByLogin(login,paginacao).map(DadosListagemPonto::new);    
+    public ResponseEntity<Page<DadosListagemPonto>> listarRegistrosPorLogin(@PathVariable String login,
+            @PageableDefault(size = 30, sort = { "dataCompleta" }) Pageable paginacao) {
+        var registrosPonto = repository.findByLogin(login, paginacao).map(DadosListagemPonto::new);
 
         return ResponseEntity.ok(registrosPonto);
 

@@ -41,6 +41,9 @@ fetch(`${URL}/api/registro-ponto/${usuario.email}`, {
   });
 
 function createHTML(data) {
+  
+  console.log(data);
+
   let html = `
       <div class="container">
         <div class="cabecalho-tabela">

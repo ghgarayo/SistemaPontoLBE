@@ -81,18 +81,26 @@ if (decodedPayload && decodedPayload.admin) {
   ];
 }
 
+function handleSideMenu() {
+  var sideMenu = document.querySelector(".side-menu-container");
+  sideMenu.classList.toggle("collapsed");
+}
 
 let header = () => {
   let html = `
-            <nav class= \"header-container\">
-              <ul class = \"header-menu\">
+            <div class=\"header-horizontal\">
+                <img class = \"menu-toggler\" src=\"/assets/img/menu.svg\" onClick="handleSideMenu()">
+                <img class =  \"header-logo" src=\"/assets/img/alerta.svg\"> 
+            </div>
+            <nav class= \"side-menu-container\">
+              <ul class = \"side-menu\">
                `;
   itemsHeader.forEach(
     (item) =>
       (html += `
-                  <li class = \"header-menu-item\"> 
-                      <a class = \"header-menu-link\" href= \"${item.url}\"> 
-                          <img class= \"header-item-icon\" src=\"/assets/img/${item.icon}.svg\">
+                  <li class = \"side-menu-item\"> 
+                      <a class = \"side-menu-link\" href= \"${item.url}\"> 
+                          <img class= \"side-item-icon\" src=\"/assets/img/${item.icon}.svg\">
                           <span class = \"item-name"\> 
                             ${item.name}  
                           </span>
@@ -100,11 +108,10 @@ let header = () => {
                   </li>
                 `)
   );
-
   html += `
-                  <li class="header-menu-item"> 
-                  <a class="header-menu-link" href="/" onclick="clearStorageAndRedirect()"> 
-                    <img class="header-item-icon" src="/assets/img/sair.svg">
+                  <li class="side-menu-item"> 
+                  <a class="side-menu-link" href="/" onclick="clearStorageAndRedirect()"> 
+                    <img class="side-item-icon" src="/assets/img/sair.svg">
                     <span class="item-name"> 
                       Sair  
                     </span>

@@ -1,8 +1,5 @@
 package com.lbe.sistemaponto.controller;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,8 +34,6 @@ public class RegistroPontoController {
             UriComponentsBuilder uriBuilder) {
 
         Ponto registroPonto = repository.findByDataCompletaAndLogin(dados.dataCompleta(), dados.login());
-        System.out.println(registroPonto);
-
         if (registroPonto == null || !registroPonto.getLogin().equalsIgnoreCase(dados.login())) {
             var dadosBatida = new Ponto(dados);
             var uri = uriBuilder.path("/ponto/{id}").buildAndExpand(dadosBatida.getId()).toUri();
@@ -48,7 +43,7 @@ public class RegistroPontoController {
             // Atualiza o registro de ponto existente com base na data
             registroPonto.atualizaPonto(dados);
             repository.save(registroPonto);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(registroPonto);
         }
     }
 

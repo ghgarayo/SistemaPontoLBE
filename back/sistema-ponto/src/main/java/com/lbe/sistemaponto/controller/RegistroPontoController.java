@@ -1,5 +1,10 @@
 package com.lbe.sistemaponto.controller;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +35,7 @@ public class RegistroPontoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity registrarBatidaPonto(@RequestBody @Valid DadosBatidaPonto dados,
+    public ResponseEntity<Object> registrarBatidaPonto(@RequestBody @Valid DadosBatidaPonto dados,
             UriComponentsBuilder uriBuilder) {
 
         Ponto registroPonto = repository.findByDataCompletaAndLogin(dados.dataCompleta(), dados.login());
@@ -47,13 +52,23 @@ public class RegistroPontoController {
         }
     }
 
-    @GetMapping("/{login}")
-    public ResponseEntity<Page<DadosListagemPonto>> listarRegistrosPorLogin(@PathVariable String login,
+    @GetMapping("/{login}/{ano}/{mes}")
+    public ResponseEntity<Object> listarRegistrosPorLogin(@PathVariable String login,
+            @PathVariable int ano, @PathVariable int mes,
             @PageableDefault(size = 30, sort = { "dataCompleta" }) Pageable paginacao) {
-        var registrosPonto = repository.findByLogin(login, paginacao).map(DadosListagemPonto::new);
 
-        return ResponseEntity.ok(registrosPonto);
+        var registrosPonto = repository.findByLogin(login, paginacao).map(DadosListagemPonto::new).getContent();
+        var registrosFiltrados = filtrarRegistrosPorAnoEMes(registrosPonto, ano, mes);
 
+        return ResponseEntity.ok(registrosFiltrados);
+    }
+
+    private List<DadosListagemPonto> filtrarRegistrosPorAnoEMes(List<DadosListagemPonto> registros, int ano, int mes) {
+        return registros.stream()
+                .filter(registro -> {
+                    YearMonth data = YearMonth.from(registro.dataCompleta());
+                    return data.getYear() == ano && data.getMonthValue() == mes;
+                }).collect(Collectors.toList());
     }
 
 }

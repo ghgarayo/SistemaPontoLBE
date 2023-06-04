@@ -1,0 +1,9 @@
+body{
+  display: grid;
+}
+
+.main-container{
+  grid-row: 2;
+  grid-column: 2;
+}
+

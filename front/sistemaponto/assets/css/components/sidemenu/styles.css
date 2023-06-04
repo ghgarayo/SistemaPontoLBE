@@ -1,42 +1,22 @@
-.header-horizontal {
-  height: 56px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-
-  background-color: #012c6d;
-}
-
-.header-logo {
-  justify-self: center;
-}
-
-.menu-toggler {
-  height: 36px;
-  width: 36px;
-  margin: 8px 16px;
-  padding: 4px;
-  display: flex;
-  background-color: none;
-}
-
-.side-menu-container {
-  display: flex;
+.side-menu {
   position: absolute;
-  left: -45vw;
+  top: 56px;
   height: calc(100vh - 56px);
+
+  left: -45vw;
   width: 45vw;
 
   background-color: #012c6d;
+  border-right: 1px solid #fba02e;
   transition: all 300ms;
 }
 
-.side-menu-container.collapsed {
+.side-menu.collapsed {
   left: 0vw;
   transition: all 300ms;
 }
 
-.side-menu {
+.side-menu-list {
   display: flex;
   flex-direction: column;
 }
@@ -74,39 +54,62 @@
 }
 
 /* Estilos para tablets */
-@media (min-width: 481px) and (max-width: 768px) {
-  .side-menu-container {
+@media (min-width: 480px) and (max-width: 768px) {
+  .side-menu {
+    grid-column: 1;
+    left: -40vw;
     width: 40vw;
   }
 }
 
 /* Estilos para computadores com resolução até 1024px */
 @media (min-width: 768px) and (max-width: 1024.55px) {
-  .side-menu-container {
-    width: 30vw;
+  .side-menu {
+    position: inherit;
+    height: calc(100vh - 56px);
+
+    left: 0;
+    width: 25vw;
+
+    transition: none;
   }
 
-
-}
-@media (min-width: 1024.56px) and (max-width: 1440px) {
-  .side-menu-container {
-    width: 20vw;
+  .side-menu.collapsed {
     left: 0vw;
-  }
-
-  .side-menu-container.collapsed{
-    left: -20vw;
+    transition: none;
   }
 }
 
-@media (min-width: 1441px) {
-  .side-menu-container {
+@media (min-width: 1024.56px) and (max-width: 1440.55px) {
+  .side-menu {
+    position: inherit;
+    height: calc(100vh - 56px);
+
+    left: 0;
+    width: 18vw;
+
+    transition: none;
+  }
+
+  .side-menu.collapsed {
+    left: 0vw;
+    transition: none;
+  }
+}
+
+@media (min-width: 1440.56px) {
+  .side-menu {
+    position: inherit;
+    height: calc(100vh - 56px);
+
+    left: 0;
     width: 15vw;
+
+    transition: none;
+  }
+
+  .side-menu.collapsed {
     left: 0vw;
+    transition: none;
   }
-
-  .side-menu-container.collapsed{
-    left: -15vw;
-  }
-
 }

@@ -1,40 +1,8 @@
-const URL = "http://localhost:8080";
-
-let token = sessionStorage.getItem("token");
-let decodedPayload = "";
-
-if (!token) {
-  window.location.href = "/index.html";
-} else {
-  decodedPayload = JSON.parse(atob(token.split(".")[1]));
-}
-
-let usuario = {
-  email: decodedPayload.sub,
-  nome: decodedPayload.nome,
-  admin: decodedPayload.admin,
-};
-
-function clearStorageAndRedirect() {
-  let credentials = sessionStorage.getItem("token");
-  sessionStorage.clear();
-
-  let rememberCredentials = false;
-  if (credentials && credentials != "") {
-    credentials = JSON.parse(credentials);
-    rememberCredentials = credentials.remember;
-    if (rememberCredentials) {
-      sessionStorage.setItem("token", JSON.stringify(credentials));
-    }
-  }
-  window.location.href = "/";
-}
-
-let itemsHeader = [];
+let itemsSideMenu = [];
 
 // Verificar se o usuário está logado e é um admin
 if (decodedPayload && decodedPayload.admin) {
-  itemsHeader = [
+  itemsSideMenu = [
     {
       name: "Home",
       url: "/pages/home.html",
@@ -42,7 +10,7 @@ if (decodedPayload && decodedPayload.admin) {
     },
     {
       name: "Relatório de Ponto",
-      url: "/pages/registroponto.html",
+      url: "/pages/relatorioponto.html",
       icon: "list",
     },
     {
@@ -56,7 +24,7 @@ if (decodedPayload && decodedPayload.admin) {
       icon: "funcionarios",
     },
     {
-      name: "Relatório Ponto Funcionários",
+      name: "Ponto Funcionários",
       url: "/pages/pontofuncionarios.html",
       icon: "list",
     },
@@ -67,7 +35,7 @@ if (decodedPayload && decodedPayload.admin) {
     },
   ];
 } else {
-  itemsHeader = [
+  itemsSideMenu = [
     {
       name: "Home",
       url: "/pages/home.html",
@@ -75,27 +43,22 @@ if (decodedPayload && decodedPayload.admin) {
     },
     {
       name: "Relatório de Ponto",
-      url: "/pages/registroponto.html",
+      url: "/pages/relatorioponto.html",
       icon: "list",
     },
   ];
 }
 
 function handleSideMenu() {
-  var sideMenu = document.querySelector(".side-menu-container");
+  var sideMenu = document.querySelector(".side-menu");
   sideMenu.classList.toggle("collapsed");
 }
 
-let header = () => {
+let sideMenu = () => {
   let html = `
-            <div class=\"header-horizontal\">
-                <img class = \"menu-toggler\" src=\"/assets/img/menu.svg\" onClick="handleSideMenu()">
-                <img class =  \"header-logo" src=\"/assets/img/alerta.svg\"> 
-            </div>
-            <nav class= \"side-menu-container\">
-              <ul class = \"side-menu\">
+              <ul class = \"side-menu-list\">
                `;
-  itemsHeader.forEach(
+  itemsSideMenu.forEach(
     (item) =>
       (html += `
                   <li class = \"side-menu-item\"> 
@@ -118,10 +81,9 @@ let header = () => {
                   </a>
                 </li> 
               </ul>           
-            </nav>  
           `;
 
   return html;
 };
 
-document.querySelector(".header").innerHTML = header();
+document.querySelector(".side-menu").innerHTML = sideMenu();

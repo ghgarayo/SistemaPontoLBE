@@ -29,7 +29,7 @@ fetch(`${URL}/api/funcionarios/${idFuncionario}`, {
 // Cria o HTML para a modal em forma de string
 let criarEditor = (data) => {
   let html = `
-    <div class="modal">
+    <div class="edit-form-container">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

@@ -1,0 +1,162 @@
+.main-container{
+  display: flex;
+  /* justify-content: space-between; */
+
+  height: calc(100vh - 56px);
+
+}
+
+.content{
+  min-width: 90vw;
+
+  display: flex;
+  flex-direction:column;
+
+  height: fit-content;
+  margin: 2.5rem auto;
+
+  border: 1px solid #CCC;
+  border-radius:5px;
+  
+}
+
+.seletor-data{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+
+  margin: 16px 0;
+}
+
+
+.tabela-registro-ponto{
+  width: 100%;
+}
+
+.titulo-tabela{
+  font-size: 32px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  color: #012c6d;
+
+}
+
+.titulo-tabela h1{
+  padding: 16px 0;
+}
+
+.header-tabela {
+  display: flex;
+  flex-direction: row;
+
+  margin: auto;
+  padding: 8px 0;
+  border-top: 2px solid #fba02e;
+  border-bottom: 2px solid #fba02e;
+  background-color: #012c6d;
+}
+
+.item-header-tabela{
+  text-align: center;
+  margin: auto;
+  color: #FFF
+}
+
+.ponto-actions{
+  margin-right: 1rem;
+}
+
+.linha-tabela {
+  display: flex;
+  margin: auto;
+  padding: 4px 0;
+}
+
+.linha-tabela:nth-child(even){
+  background-color: #CCC
+}
+
+.value {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+
+  margin: auto;
+  max-width: fit-content;
+  padding: 2px 6px;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.item-header-tabela:nth-child(1){
+  width: 17%
+}
+
+.value:nth-child(1) {
+  width:20%
+}
+
+.item-header-tabela:nth-child(2),
+.item-header-tabela:nth-child(3),
+.item-header-tabela:nth-child(4),
+.item-header-tabela:nth-child(5),
+.value:nth-child(2),
+.value:nth-child(3),
+.value:nth-child(4), 
+.value:nth-child(5) {
+  width: 15%
+}
+
+.value:nth-child(6),
+.ponto-actions-button{
+  margin-right: 0.5rem;
+}
+
+.botao-ajuste{
+  border: none;
+  border-radius: 5px;
+
+  color: #FFF;
+  background-color: #012c6d;
+  padding: 4px 8px;
+  transition: all 300ms;
+}
+
+.botao-ajuste:hover{
+  background-color: #0a4d9e;
+}
+
+@media (min-width: 768px) and (max-width: 1024.55px) {
+
+
+  .content{
+    min-width: 0px;
+    width: 70vw;
+  }
+}
+
+
+@media (min-width: 1024.56px) and (max-width: 1440.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 50vw;
+  }
+
+}
+
+@media (min-width: 1440.56px) {
+  .side-menu{
+    max-width: 15vw;
+  }
+
+  .content{
+    min-width: 0px;
+    width: 50vw;
+  }
+
+}

@@ -1,0 +1,61 @@
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  height: 56px;
+
+  background-color: #012c6d;
+  border-bottom:1px solid #fba02e;
+
+}
+
+.header-logo {
+  justify-self: center;
+}
+
+.menu-toggler {
+  height: 36px;
+  width: 36px;
+  margin: 8px 16px;
+  padding: 4px;
+  display: flex;
+  background-color: none;
+}
+
+/* Estilos para computadores com resolução até 1024px */
+@media (min-width: 768px) and (max-width: 1024.55px) {
+  .header{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+  }  
+  
+  .menu-toggler{
+      display: none
+    }
+
+}
+
+@media (min-width: 1024.56px) and (max-width: 1440.55px) {
+  .header{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+  }  
+  
+  .menu-toggler{
+    display: none
+  }
+}
+
+@media (min-width: 1440.56px) {
+  .header{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+  }  
+  
+  .menu-toggler{
+    display: none
+  }
+}

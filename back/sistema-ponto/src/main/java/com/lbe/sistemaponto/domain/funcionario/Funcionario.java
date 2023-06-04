@@ -76,10 +76,6 @@ public class Funcionario implements UserDetails{
             this.login = dados.email();
         }
 
-        if (dados.senha() != null) {
-            this.senha = dados.senha();
-        }
-
         if (dados.telefone() != null) {
             this.telefone = dados.telefone();
         }
@@ -89,8 +85,9 @@ public class Funcionario implements UserDetails{
         }
     }
 
-    public void inativar(){
+    public String inativar(){
         this.ativo = false;
+        return "Inativação efetuada com sucesso!";
     }
 
     @Override

@@ -1,23 +1,18 @@
-body {
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
-
-.header {
-  grid-row: 1;
-  grid-column: 1 / span 2;
-}
-
-.side-menu {
-  grid-row: 2;
-  grid-column: 1;
-}
-
 .main-container {
-  grid-row: 2;
-  grid-column: 2;
+  display: flex;
+  height: calc(100vh - 56px);
+}
 
-  transform: translate(-50%, 50%);
+.content {
+  min-width: 90vw;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+
+  height: fit-content;
+  margin: 2.5rem auto;
+
+  border-radius: 5px;
 }
 
 /* 
@@ -99,4 +94,36 @@ body {
 
 .botao-ponto:hover {
   background-color: #5cb3e6;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024.55px) {
+
+
+  .content{
+    min-width: 0px;
+    width: 70vw;
+  }
+}
+
+
+@media (min-width: 1024.56px) and (max-width: 1440.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 50vw;
+  }
+
+}
+
+@media (min-width: 1440.56px) {
+  .side-menu{
+    max-width: 15vw;
+  }
+
+  .content{
+    min-width: 0px;
+    width: 50vw;
+  }
+
 }

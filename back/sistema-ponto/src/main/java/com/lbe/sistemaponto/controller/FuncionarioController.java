@@ -62,10 +62,10 @@ public class FuncionarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity inativar(@PathVariable Long id) {
+    public ResponseEntity<Object> inativar(@PathVariable Long id) {
         var funcionario = repository.getReferenceById(id);
         funcionario.inativar();
-
+        repository.save(funcionario);
         return ResponseEntity.noContent().build();
     }
 

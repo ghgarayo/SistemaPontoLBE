@@ -25,7 +25,7 @@ let boasVindas = () => {
   return html;
 };
 
-document.querySelector(".main-container").innerHTML = boasVindas();
+document.querySelector(".content").innerHTML = boasVindas();
 
 function registrarBatida() {
   let dataHora = new Date();

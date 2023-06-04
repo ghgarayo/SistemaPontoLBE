@@ -24,6 +24,7 @@ public class TokenService {
       var algoritmo = Algorithm.HMAC256(secret);
       return JWT.create()
           .withIssuer("LarBatistaEsperanca")
+          .withClaim("id", funcionario.getId())
           .withClaim("admin", funcionario.isAdmin())
           .withClaim("nome", funcionario.getNome())
           .withSubject(funcionario.getLogin())

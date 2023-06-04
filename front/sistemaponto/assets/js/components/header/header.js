@@ -10,6 +10,7 @@ if (!token) {
 }
 
 let usuario = {
+  id: decodedPayload.id,
   email: decodedPayload.sub,
   nome: decodedPayload.nome,
   admin: decodedPayload.admin,
@@ -41,11 +42,64 @@ let header = () => {
 
 document.querySelector(".header").innerHTML = header();
 
+const numberToMonth = [
+  {
+    id: 1,
+    month: "Janeiro",
+  },
+  {
+    id: 2,
+    month: "Fevereiro",
+  },
+  {
+    id: 3,
+    month: "Março",
+  },
+  {
+    id: 4,
+    month: "Abril",
+  },
+  {
+    id: 5,
+    month: "Maio",
+  },
+  {
+    id: 6,
+    month: "Junho",
+  },
+  {
+    id: 7,
+    month: "Julho",
+  },
+  {
+    id: 8,
+    month: "Agosto",
+  },
+  {
+    id: 9,
+    month: "Setembro",
+  },
+  {
+    id: 10,
+    month: "Outubro",
+  },
+  {
+    id: 11,
+    month: "Novembro",
+  },
+  {
+    id: 12,
+    month: "Dezembro",
+  },
+];
+
+
+
 var dataAtual = new Date();
 
 var anoAtual = dataAtual.getFullYear();
 var mesAtual = dataAtual.getMonth() + 1;
 
-console.log("Ano", anoAtual)
-console.log("Mes", mesAtual)
+// console.log("Ano", anoAtual)
+// console.log("Mes", mesAtual)
 

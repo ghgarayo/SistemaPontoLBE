@@ -1,5 +1,16 @@
+body{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.header{
+  grid-row: 1;
+  grid-column: 1 / span 2
+}
+
 .main-container{
   display: flex;
+  flex-direction: column;
   /* justify-content: space-between; */
 
   height: calc(100vh - 56px);
@@ -7,13 +18,12 @@
 }
 
 .content{
-  min-width: 90vw;
-
+  width: 90vw;
   display: flex;
   flex-direction:column;
 
   height: fit-content;
-  margin: 2.5rem auto;
+  margin: 0 2rem;
 
   border: 1px solid #CCC;
   border-radius:5px;
@@ -26,9 +36,12 @@
   align-items:center;
   justify-content: center;
 
-  margin: 16px 0;
+  margin: 1rem auto;
 }
 
+.seletor-data span{
+  width: 15vw;
+}
 
 .tabela-registro-ponto{
   width: 100%;
@@ -135,7 +148,8 @@
 
   .content{
     min-width: 0px;
-    width: 70vw;
+    margin: 0 auto;
+    width: 67vw;
   }
 }
 
@@ -144,6 +158,7 @@
 
   .content{
     min-width: 0px;
+    margin: 0 auto;
     width: 50vw;
   }
 
@@ -152,11 +167,13 @@
 @media (min-width: 1440.56px) {
   .side-menu{
     max-width: 15vw;
+    
   }
 
   .content{
     min-width: 0px;
+    margin: 0 auto;
     width: 50vw;
-  }
+ }
 
 }

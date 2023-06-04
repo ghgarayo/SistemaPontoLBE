@@ -18,8 +18,7 @@ const columnItems = [
   // { title: "Longitude", key: "longitudeSaida2" },
 ];
 
-// Realizar a chamada GET usando fetch
-fetch(`${URL}/api/registro-ponto/${usuario.email}/${anoAtual}/${mesAtual}`, {
+fetch(`${URL}/api/funcionarios`, {
   method: "GET",
   headers: {
     Authorization: `Bearer ${token}`,
@@ -33,26 +32,72 @@ fetch(`${URL}/api/registro-ponto/${usuario.email}/${anoAtual}/${mesAtual}`, {
     }
   })
   .then((data) => {
-    document.querySelector(".content").innerHTML = createHTML(data);
-    document.querySelector(".content-por-funcionario").innerHTML = createHTML(data);
+    document.querySelector(".seletor-funcionarios").innerHTML =
+      seletorFuncionarios(data);
   })
   .catch((error) => {
-    console.log(error);
-    // Tratar o erro de forma adequada
+    console.error("Erro ao recuperar lista de funcionários:", error);
   });
 
-// Função para criar o HTML com base nos dados obtidos
+let emailSelecionado = "";
+console.log("Email", emailSelecionado);
+
+let seletorFuncionarios = (data) => {
+  let html = `
+  <div class="menu-dropdown">
+  <select class="dropdown-funcionarios" onchange="fazerSolicitacao(this.value, ${mesAtual}, ${anoAtual})">
+        <option value="">Selecione um funcionário</option>
+        `;
+
+  data.content.forEach((item) => {
+    html += `<option value="${item.email}">${item.nome}</option>`;
+  });
+
+  html += `
+        </select>
+        </div> 
+        `;
+
+  return html;
+};
+
+function fazerSolicitacao(email, mes, ano) {
+  emailSelecionado = email;
+  // console.log(`${URL}/api/registro-ponto/${emailSelecionado}/${ano}/${mes}`);
+  fetch(`${URL}/api/registro-ponto/${emailSelecionado}/${ano}/${mes}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Ocorreu um erro ao obter os dados.");
+      }
+    })
+    .then((data) => {
+      document.querySelector(".content-por-funcionario").innerHTML =
+        createHTML(data);
+    })
+    .catch((error) => {
+      console.log(error);
+      // Tratar o erro de forma adequada
+    });
+}
+
 function createHTML(data) {
   let html = `
-<table class="tabela-registro-ponto">
-  <thead class="titulo-tabela">
-    <tr>
-      <th colspan="${columnItems.length + 1}"><h1>Registro de Ponto</h1></th>
-    </tr>
-  </thead>
-  <thead>
-    <tr class="header-tabela">
-`;
+  <table class="tabela-registro-ponto">
+    <thead class="titulo-tabela">
+      <tr>
+        <th colspan="${columnItems.length + 1}"><h1>Registro de Ponto</h1></th>
+      </tr>
+    </thead>
+    <thead>
+      <tr class="header-tabela">
+  `;
 
   // Criar os cabeçalhos das colunas com base nos itens de coluna definidos
   columnItems.forEach((column) => {
@@ -60,11 +105,11 @@ function createHTML(data) {
   });
 
   html += `
-      <th class="ponto-actions item-header-tabela">Ações</th>
-    </tr>
-  </thead>
-  <tbody class="dados-tabela">
-`;
+        <th class="ponto-actions item-header-tabela">Ações</th>
+      </tr>
+    </thead>
+    <tbody class="dados-tabela">
+  `;
 
   // Preencher os dados com base nos objetos do conteúdo
   data.forEach((item) => {
@@ -82,59 +127,10 @@ function createHTML(data) {
   });
 
   html += `
-  </tbody>
-</table>`;
+    </tbody>
+  </table>`;
 
   return html;
-}
-
-// Função para converter a data no formato desejado
-function converterFormatoData(data) {
-  // Dividir a data em partes usando o separador '-'
-  const dataSeparada = data.split("-");
-
-  const ano = dataSeparada[0];
-  const mes = dataSeparada[1];
-  const dia = dataSeparada[2];
-
-  // Concatenar as partes da data no formato desejado
-  const dataFormatada = `${dia}/${mes}/${ano}`;
-
-  return dataFormatada;
-}
-
-// Função para fazer a solicitação GET com base no mês e ano
-function fazerSolicitacao(mes, ano) {
-  fetch(`${URL}/api/registro-ponto/${usuario.email}/${ano}/${mes}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Ocorreu um erro ao obter os dados.");
-      }
-    })
-    .then((data) => {
-      document.querySelector(".content").innerHTML = createHTML(data);
-    })
-    .catch((error) => {
-      console.log(error);
-      // Tratar o erro de forma adequada
-    });
-}
-
-// Função para obter o nome do mês com base no número
-function getMonthName(mesAtual) {
-  for (let i = 0; i < numberToMonth.length; i++) {
-    if (numberToMonth[i].id === mesAtual) {
-      return numberToMonth[i].month;
-    }
-  }
-  return null; // Retornar null caso o mês não seja encontrado
 }
 
 let linkMesAnterior = document.querySelector(".mes-anterior");
@@ -154,7 +150,6 @@ linkMesAnterior.addEventListener("click", () => {
     anoAtual -= 1;
     document.querySelector(".exibir-mes").textContent = getMonthName(mesAtual);
     document.querySelector(".exibir-ano").textContent = anoAtual;
-
   } else {
     mesAtual -= 1;
     document.querySelector(".exibir-mes").textContent = getMonthName(mesAtual);
@@ -163,7 +158,7 @@ linkMesAnterior.addEventListener("click", () => {
   // console.log("Ano Atual", anoAtual);
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
-  fazerSolicitacao(mesAtual, anoAtual);
+  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
 });
 
 linkMesSeguinte.addEventListener("click", () => {
@@ -174,7 +169,6 @@ linkMesSeguinte.addEventListener("click", () => {
     anoAtual += 1;
     document.querySelector(".exibir-mes").textContent = getMonthName(mesAtual);
     document.querySelector(".exibir-ano").textContent = anoAtual;
-
   } else {
     mesAtual += 1;
     document.querySelector(".exibir-mes").textContent = getMonthName(mesAtual);
@@ -183,7 +177,7 @@ linkMesSeguinte.addEventListener("click", () => {
   // console.log("Ano Atual", anoAtual);
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
-  fazerSolicitacao(mesAtual, anoAtual);
+  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
 });
 
 linkAnoAnterior.addEventListener("click", () => {
@@ -193,7 +187,7 @@ linkAnoAnterior.addEventListener("click", () => {
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
   document.querySelector(".exibir-ano").textContent = anoAtual;
-  fazerSolicitacao(mesAtual, anoAtual);
+  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
 });
 
 linkAnoSeguinte.addEventListener("click", () => {
@@ -206,5 +200,30 @@ linkAnoSeguinte.addEventListener("click", () => {
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
   document.querySelector(".exibir-ano").textContent = anoAtual;
-  fazerSolicitacao(mesAtual, anoAtual);
+  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
 });
+
+// Função para converter a data no formato desejado
+function converterFormatoData(data) {
+  // Dividir a data em partes usando o separador '-'
+  const dataSeparada = data.split("-");
+
+  const ano = dataSeparada[0];
+  const mes = dataSeparada[1];
+  const dia = dataSeparada[2];
+
+  // Concatenar as partes da data no formato desejado
+  const dataFormatada = `${dia}/${mes}/${ano}`;
+
+  return dataFormatada;
+}
+
+// Função para obter o nome do mês com base no número
+function getMonthName(mesAtual) {
+  for (let i = 0; i < numberToMonth.length; i++) {
+    if (numberToMonth[i].id === mesAtual) {
+      return numberToMonth[i].month;
+    }
+  }
+  return null; // Retornar null caso o mês não seja encontrado
+}

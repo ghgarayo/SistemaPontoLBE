@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface PontoRepository extends JpaRepository<Ponto, Long> {
-  public Ponto findByDataCompleta(LocalDate dataCompleta);
-  public Ponto findByDataCompletaAndLogin(LocalDate dataCompleta, String login);
+  Ponto findByDataCompleta(LocalDate dataCompleta);
+  Ponto findByDataCompletaAndLogin(LocalDate dataCompleta, String login);
 
   Page<Ponto> findByLogin(String login, Pageable paginacao);
 }

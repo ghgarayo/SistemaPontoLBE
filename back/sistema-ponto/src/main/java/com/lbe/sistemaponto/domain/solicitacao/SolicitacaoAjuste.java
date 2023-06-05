@@ -8,12 +8,12 @@ import java.time.LocalTime;
 
 
 @Table(name = "solicitacao_ajuste")
-@Entity(name = "Solicitação")
+@Entity(name = "Solicitacao")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Solicitacao {
+public class SolicitacaoAjuste {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Solicitacao {
     @Column(name = "Ativo")
     private Boolean ativo;
 
-    public Solicitacao(DadosSolicitacaoAjuste dados){
+    public SolicitacaoAjuste(DadosSolicitacaoAjuste dados){
         this.idPonto = dados.idPonto();
         this.idFuncionario = dados.idFuncionario();
         this.idAdmin = dados.idAdmin();
@@ -49,6 +49,11 @@ public class Solicitacao {
         this.descricaoSolicitacao = dados.descricaoSolicitacao();
         this.resposta = RespostaSolicitacao.valueOf("EM_ANALISE");
         this.ativo = true;
+    }
+
+    public String finalizarSolicitacao() {
+        this.ativo = false;
+        return "Solicitação finalizada com sucesso!";
     }
 
 }

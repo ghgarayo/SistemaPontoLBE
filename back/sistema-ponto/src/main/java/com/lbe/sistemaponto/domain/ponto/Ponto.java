@@ -2,9 +2,6 @@ package com.lbe.sistemaponto.domain.ponto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.YearMonth;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -17,6 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Embeddable
 public class Ponto {
 
   @Id

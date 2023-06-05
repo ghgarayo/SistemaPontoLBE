@@ -34,6 +34,21 @@ public class FuncionarioController {
     @Transactional
     public ResponseEntity<DadosDetalhamentoFuncionario> cadastrar(@RequestBody @Valid DadosCadastroFuncionario dados,
             UriComponentsBuilder uriBuilder) {
+
+        /*
+         * Código 201 devolve no corpo da resposta:
+         * os dados do novo recurso/registro criado
+         * cabeçalho protocolo HTTP (Location)
+         * A URI criada representa o endereço e cabe ao Spring criar o cabeçalho
+         * location
+         * path() recebe o complemento da URL.
+         * buildAndExpand() recebe o id recem criado no banco de dados.
+         * toUri() cria o objeto URI.
+         * body() a informação que será devolvida no corpo da resposta, neste caso o
+         * DTO.
+         * 
+         */
+
         var encryptedPassword = encoder.encode(dados.senha());
         var funcionario = new Funcionario(dados);
         funcionario.setSenha(encryptedPassword);
@@ -46,7 +61,27 @@ public class FuncionarioController {
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemFuncionario>> listar(
-            @PageableDefault(size = 10, sort = { "id" }) Pageable paginacao) {
+            @PageableDefault(size = 30, sort = { "id" }) Pageable paginacao) {
+
+        /*
+         * Para paginação, passa-se um Pageable e o retorno será uma Page. FindAll agora
+         * tem uma sobrecarga que recebe a paginacao como atributo, e o Page já possui o
+         * .map() como metodo.
+         * Nao é necessário usar o toList()
+         * 
+         * USANDO PAGINAÇÃO E ORDENAÇÃO NA URL DA API
+         * 
+         * -=-=-= Paginação =-=-=-
+         * /funcionarios?size=[x]&page=[y]
+         * onde X controla o numero de registro por página e Y controla qual página está
+         * sendo acessada
+         * 
+         * -=-=-= Ordenação =-=-=-
+         * /funcionarios?sort=[z],[j]
+         * onde Z é o atributo que será utilizado para ordenar a lista e J define se é
+         * ascendente (asc) ou descendente (desc)
+         */
+
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemFuncionario::new);
 
         return ResponseEntity.ok(page);

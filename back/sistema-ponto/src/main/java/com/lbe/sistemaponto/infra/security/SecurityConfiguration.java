@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/funcionarios").permitAll() // DELETAR ESSA LINHA 
+                .requestMatchers(HttpMethod.POST, "/api/funcionarios").permitAll() // DELETAR ESSA LINHA
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build(); // Cria o objeto do tipo SecurityFilterChain
@@ -52,11 +52,17 @@ public class SecurityConfiguration {
      */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        /*
+         * Esta classe cria o objeto AuthenticantionManager.
+         */
         return configuration.getAuthenticationManager();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+        /*
+         * Algoritmo de hashing de senhas para nao salvar em texto limpo no banco de dados.
+         */
         return new BCryptPasswordEncoder();
     }
 }

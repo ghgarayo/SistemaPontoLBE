@@ -1,18 +1,12 @@
 package com.lbe.sistemaponto.domain.funcionario;
 
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.lbe.sistemaponto.domain.endereco.Endereco;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,7 +17,6 @@ import lombok.Setter;
 import java.util.Collection;
 import java.util.List;
 
-
 @Table(name = "funcionarios")
 @Entity(name = "Funcionario")
 @Getter
@@ -31,7 +24,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Funcionario implements UserDetails{
+@Embeddable
+public class Funcionario implements UserDetails {
+
+    /*
+     * Implementa a interface UserDetails do Spring Security. Por isso é necessário
+     * implementar os métodos.
+     * Com isso o Spring "aprende" que os atributos da classe Usuário são os login e
+     * senha do sistema
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +49,11 @@ public class Funcionario implements UserDetails{
     private Endereco endereco;
 
     private boolean ativo;
-    
+
     @Column(name = "is_admin")
     private boolean isAdmin;
 
-    public Funcionario(DadosCadastroFuncionario dados){
+    public Funcionario(DadosCadastroFuncionario dados) {
         this.ativo = true;
         this.isAdmin = false;
         this.nome = dados.nome();
@@ -60,12 +61,12 @@ public class Funcionario implements UserDetails{
         this.rg = dados.rg();
         this.telefone = dados.telefone();
         this.email = dados.email();
-        this.login = dados.email(); // login do usuário sera o email. 
+        this.login = dados.email(); // login do usuário sera o email.
         this.senha = dados.senha();
         this.endereco = new Endereco(dados.endereco());
     }
 
-    public void atualizarInformacoes(@Valid DadosAtualizacaoFuncionario dados){
+    public void atualizarInformacoes(@Valid DadosAtualizacaoFuncionario dados) {
 
         if (dados.nome() != null) {
             this.nome = dados.nome();
@@ -85,7 +86,7 @@ public class Funcionario implements UserDetails{
         }
     }
 
-    public String inativar(){
+    public String inativar() {
         this.ativo = false;
         return "Inativação efetuada com sucesso!";
     }

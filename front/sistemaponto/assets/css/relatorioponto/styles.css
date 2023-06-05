@@ -35,12 +35,25 @@ body{
   flex-direction: column;
   align-items:center;
   justify-content: center;
-
+  
+  width: 15vw;
   margin: 1rem auto;
 }
 
-.seletor-data span{
-  width: 15vw;
+.month-container,
+.year-container{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.exibir-mes,
+.exibir-ano{
+  display:flex;
+  flex-direction: row;
 }
 
 .tabela-registro-ponto{
@@ -77,10 +90,6 @@ body{
   color: #FFF
 }
 
-.ponto-actions{
-  margin-right: 1rem;
-}
-
 .linha-tabela {
   display: flex;
   margin: auto;
@@ -105,12 +114,9 @@ body{
   border-radius: 5px;
 }
 
-.item-header-tabela:nth-child(1){
+.item-header-tabela:nth-child(1),
+.value:nth-child(1){
   width: 17%
-}
-
-.value:nth-child(1) {
-  width:20%
 }
 
 .item-header-tabela:nth-child(2),
@@ -124,10 +130,17 @@ body{
   width: 15%
 }
 
-.value:nth-child(6),
-.ponto-actions-button{
-  margin-right: 0.5rem;
+.ponto-actions,
+.ponto-actions-container{
+  width: 23%
 }
+
+.ponto-actions-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 
 .botao-ajuste{
   border: none;

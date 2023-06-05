@@ -74,10 +74,13 @@ function createHTML(data) {
       const formattedValue =
         column.key === "dataCompleta" ? converterFormatoData(value) : value;
       html += `<td class="value">${
-        formattedValue !== null ? formattedValue : ""
+        formattedValue !== null ? formattedValue : "-- : -- : --"
       }</td>`;
     });
-    html += `<td class="ponto-actions-button"><button class="botao-ajuste">Ajuste</button></td>`;
+    html += `<td class="ponto-actions-container">
+                  <button class="botao-ajuste">Ajuste</button>
+                  <button class="botao-ajuste">Expandir</button>
+                  </td>`;
     html += `</tr>`;
   });
 
@@ -97,7 +100,7 @@ function converterFormatoData(data) {
   const mes = dataSeparada[1];
   const dia = dataSeparada[2];
 
-  // Concatenar as partes da data no formato desejado
+  // Concatenar as partes da data no formato DD/MM/AAAA
   const dataFormatada = `${dia}/${mes}/${ano}`;
 
   return dataFormatada;
@@ -167,7 +170,7 @@ linkMesAnterior.addEventListener("click", () => {
 });
 
 linkMesSeguinte.addEventListener("click", () => {
-  if (mesAtual === mesInicial) {
+  if (mesAtual === mesInicial && anoAtual === anoInicial) {
     return;
   } else if (mesAtual === 12) {
     mesAtual = 1;

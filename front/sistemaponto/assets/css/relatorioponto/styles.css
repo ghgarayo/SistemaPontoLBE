@@ -1,6 +1,8 @@
 body{
   display: grid;
   grid-template-columns: auto 1fr;
+  font-family: Trebuchet MS;
+  
 }
 
 .header{
@@ -11,13 +13,12 @@ body{
 .main-container{
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
 
   height: calc(100vh - 56px);
 
 }
 
-.content{
+.content-por-funcionario{
   width: 90vw;
   display: flex;
   flex-direction:column;
@@ -25,7 +26,6 @@ body{
   height: fit-content;
   margin: 0 2rem;
 
-  border: 1px solid #CCC;
   border-radius:5px;
   
 }
@@ -46,7 +46,7 @@ body{
   flex-direction: row;
   align-items:center;
   justify-content: space-between;
-
+  
   width: 100%;
 }
 
@@ -57,6 +57,7 @@ body{
 }
 
 .tabela-registro-ponto{
+  border: 1px solid #CCC;
   width: 100%;
 }
 

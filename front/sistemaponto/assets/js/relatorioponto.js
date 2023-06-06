@@ -19,7 +19,8 @@ const columnItems = [
 ];
 
 // Realizar a chamada GET usando fetch
-fetch(`${URL}/api/registro-ponto/${usuario.email}/${anoAtual}/${mesAtual}`, {
+// console.log(`${URL}/api/registro-ponto/${usuario.id}/${anoAtual}/${mesAtual}`);
+fetch(`${URL}/api/registro-ponto/${usuario.id}/${anoAtual}/${mesAtual}`, {
   method: "GET",
   headers: {
     Authorization: `Bearer ${token}`,
@@ -34,7 +35,7 @@ fetch(`${URL}/api/registro-ponto/${usuario.email}/${anoAtual}/${mesAtual}`, {
   })
   .then((data) => {
     document.querySelector(".content").innerHTML = createHTML(data);
-    document.querySelector(".content-por-funcionario").innerHTML = createHTML(data);
+    // document.querySelector(".content-por-funcionario").innerHTML = createHTML(data);
   })
   .catch((error) => {
     console.log(error);
@@ -78,7 +79,7 @@ function createHTML(data) {
       }</td>`;
     });
     html += `<td class="ponto-actions-container">
-                  <button class="botao-ajuste">Ajuste</button>
+                  <button class="botao-ajuste" value=${item.id} onclick="redirectToRequestAdjust(this.value)">Ajuste</button>
                   <button class="botao-ajuste">Expandir</button>
                   </td>`;
     html += `</tr>`;
@@ -108,7 +109,8 @@ function converterFormatoData(data) {
 
 // Função para fazer a solicitação GET com base no mês e ano
 function fazerSolicitacao(mes, ano) {
-  fetch(`${URL}/api/registro-ponto/${usuario.email}/${ano}/${mes}`, {
+  console.log(`${URL}/api/registro-ponto/${usuario.id}/${ano}/${mes}`)
+  fetch(`${URL}/api/registro-ponto/${usuario.id}/${ano}/${mes}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -211,3 +213,8 @@ linkAnoSeguinte.addEventListener("click", () => {
   document.querySelector(".exibir-ano").textContent = anoAtual;
   fazerSolicitacao(mesAtual, anoAtual);
 });
+
+function redirectToRequestAdjust(id){
+  sessionStorage.setItem("id", id);
+  window.location.href = "solicitarajuste.html";
+}

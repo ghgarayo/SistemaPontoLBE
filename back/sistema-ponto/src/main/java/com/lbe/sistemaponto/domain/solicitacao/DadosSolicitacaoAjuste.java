@@ -12,11 +12,15 @@ public record DadosSolicitacaoAjuste(
         @NotNull
         Long idFuncionario,
         @NotNull
-        Long idAdmin,
-        @NotNull
-        LocalTime horaCompleta,
-        @NotNull
         LocalDate dataCompleta,
+        @NotNull
+        LocalTime horarioEntrada1,
+        @NotNull
+        LocalTime horarioSaida1,
+        @NotNull
+        LocalTime horarioEntrada2,
+        @NotNull
+        LocalTime horarioSaida2,
         @NotBlank
         String descricaoSolicitacao
 ) {

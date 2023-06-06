@@ -43,8 +43,6 @@ public class SolicitacaoAjuste {
     public SolicitacaoAjuste(DadosSolicitacaoAjuste dados){
         this.idPonto = dados.idPonto();
         this.idFuncionario = dados.idFuncionario();
-        this.idAdmin = dados.idAdmin();
-        this.horaCompleta = dados.horaCompleta();
         this.dataCompleta = dados.dataCompleta();
         this.descricaoSolicitacao = dados.descricaoSolicitacao();
         this.resposta = RespostaSolicitacao.valueOf("EM_ANALISE");

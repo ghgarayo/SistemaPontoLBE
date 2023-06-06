@@ -9,6 +9,7 @@ import lombok.*;
 
 @Table(name = "registro_ponto")
 @Entity(name = "Ponto")
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,8 +21,9 @@ public class Ponto {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String login;
 
+  @Column(name="Id_Funcionario")
+  private Long idFuncionario;
   @Column(name = "data_completa")
   private LocalDate dataCompleta;
   @Column(name = "horario_entrada1")
@@ -52,16 +54,16 @@ public class Ponto {
   public Ponto(DadosBatidaPonto dados) {
 
     this.dataCompleta = dados.dataCompleta();
-    this.login = dados.login();
+    this.idFuncionario = dados.idFuncionario();
     this.horarioEntrada1 = dados.horarioCompleto();
     this.longitudeEntrada1 = dados.longitude();
     this.latitudeEntrada1 = dados.latitude();
 
   }
 
-  public void atualizaPonto(@Valid DadosBatidaPonto dados) {
+  public void atualizaPonto(DadosBatidaPonto dados) {
 
-    if (dados.login().equalsIgnoreCase(this.login) && this.getHorarioSaida1() == null) {
+    if (dados.idFuncionario() == this.idFuncionario && this.getHorarioSaida1() == null) {
       this.horarioSaida1 =dados.horarioCompleto();
       this.longitudeSaida1 = dados.longitude();
       this.latitudeSaida1 = dados.latitude();
@@ -69,7 +71,7 @@ public class Ponto {
       return;
     }
 
-    if (dados.login().equalsIgnoreCase(this.login)&& this.getHorarioEntrada2() == null) {
+    if (dados.idFuncionario() == this.idFuncionario && this.getHorarioEntrada2() == null) {
       this.horarioEntrada2 = dados.horarioCompleto();
       this.longitudeEntrada2 = dados.longitude();
       this.latitudeEntrada2 = dados.latitude();
@@ -77,7 +79,7 @@ public class Ponto {
       return;
     }
 
-    if (dados.login().equalsIgnoreCase(this.login) && this.getHorarioSaida2() == null) {
+    if (dados.idFuncionario() == this.idFuncionario && this.getHorarioSaida2() == null) {
       this.horarioSaida2 =dados.horarioCompleto();
       this.longitudeSaida2 = dados.longitude();
       this.latitudeSaida2 = dados.latitude();

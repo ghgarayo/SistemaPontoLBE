@@ -43,9 +43,11 @@ function registrarBatida() {
           dataCompleta: dataCompleta,
           horarioCompleto: horarioCompleto,
           latitude: latitude,
-          login: usuario.email,
+          idFuncionario: usuario.id,
           longitude: longitude,
         };
+
+        console.log(registroPonto);
 
         let headers = {
           "Authorization": `Bearer ${token}`,

@@ -25,8 +25,6 @@ fetch(`${URL}/api/funcionarios`, {
   })
   .then((data) => {
     document.querySelector(".content").innerHTML = tabelaFuncionarios(data);
-    document.querySelector(".lista-funcionarios").innerHTML =
-      dropdownFuncionarios(data);
   })
   .catch((error) => {
     console.error("Erro ao recuperar lista de funcionários:", error);
@@ -109,26 +107,3 @@ function inativarUsuario(idFuncionario) {
     });
 }
 
-let dropdownFuncionarios = (data) => {
-  console.log(data);
-  // Adicionar o menu dropdown com os nomes dos funcionários
-  let html = `
-    <div class="menu-dropdown">
-      <select class="dropdown-funcionarios" onchange="selecionarFuncionario(this.value)">
-        <option value="">Selecione um funcionário</option>
-  `;
-
-  data.content.forEach((item) => {
-    html += `<option>${item.nome}</option>`;
-  });
-
-  html += `
-      </select>
-    </div>
-  `;
-
-  return html;
-};
-
-document.querySelector(".lista-funcionarios").innerHTML =
-  dropdownFuncionarios(data);

@@ -5,15 +5,18 @@ if (!token) {
 const columnItems = [
   { title: "Data", key: "dataCompleta" },
   { title: "Entrada", key: "horarioEntrada1" },
+  { title: "Saída", key: "horarioSaida1" },
+  { title: "Entrada", key: "horarioEntrada2" },
+  { title: "Saída", key: "horarioSaida2" },
+];
+
+const expandedMenuDetails = [
   // { title: "Latitude", key: "latitudeEntrada1" },
   // { title: "Longitude", key: "longitudeEntrada1" },
-  { title: "Saída", key: "horarioSaida1" },
   // { title: "Latitude", key: "latitudeSaida1" },
   // { title: "Longitude", key: "longitudeSaida1" },
-  { title: "Entrada", key: "horarioEntrada2" },
   // { title: "Latitude", key: "latitudeEntrada2" },
   // { title: "Longitude", key: "longitudeEntrada2" },
-  { title: "Saída", key: "horarioSaida2" },
   // { title: "Latitude", key: "latitudeSaida2" },
   // { title: "Longitude", key: "longitudeSaida2" },
 ];
@@ -39,18 +42,19 @@ fetch(`${URL}/api/funcionarios`, {
     console.error("Erro ao recuperar lista de funcionários:", error);
   });
 
-let emailSelecionado = "";
-console.log("Email", emailSelecionado);
+let idFuncionarioSelecionado = "";
+console.log("idFuncionario", idFuncionarioSelecionado);
 
 let seletorFuncionarios = (data) => {
   let html = `
   <div class="menu-dropdown">
+  <span class="selecao-funcionario-title">Selecione um Funcionário: </span>
   <select class="dropdown-funcionarios" onchange="fazerSolicitacao(this.value, ${mesAtual}, ${anoAtual})">
-        <option value="">Selecione um funcionário</option>
+        <option value="">  </option>
         `;
 
   data.content.forEach((item) => {
-    html += `<option value="${item.email}">${item.nome}</option>`;
+    html += `<option value="${item.id}">${item.nome}</option>`;
   });
 
   html += `
@@ -61,10 +65,12 @@ let seletorFuncionarios = (data) => {
   return html;
 };
 
-function fazerSolicitacao(email, mes, ano) {
-  emailSelecionado = email;
-  // console.log(`${URL}/api/registro-ponto/${emailSelecionado}/${ano}/${mes}`);
-  fetch(`${URL}/api/registro-ponto/${emailSelecionado}/${ano}/${mes}`, {
+function fazerSolicitacao(idFuncionario, mes, ano) {
+  idFuncionarioSelecionado = idFuncionario;
+  console.log(
+    `${URL}/api/registro-ponto/${idFuncionarioSelecionado}/${ano}/${mes}`
+  );
+  fetch(`${URL}/api/registro-ponto/${idFuncionarioSelecionado}/${ano}/${mes}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -112,17 +118,19 @@ function createHTML(data) {
   `;
 
   // Preencher os dados com base nos objetos do conteúdo
-  data.forEach((item) => {
-    html += `<tr class="linha-tabela">`;
+  data.forEach((item,i) => {
+    html += `<tr class="linha-${i} linha-tabela">`;
     columnItems.forEach((column) => {
       const value = item[column.key];
       const formattedValue =
         column.key === "dataCompleta" ? converterFormatoData(value) : value;
       html += `<td class="value">${
-        formattedValue !== null ? formattedValue : ""
+        formattedValue !== null ? formattedValue : "-- : -- : --"
       }</td>`;
     });
-    html += `<td class="ponto-actions-button"><button class="botao-ajuste">Ajuste</button></td>`;
+    html += `<td class="ponto-actions-container">
+                  <button class="botao-expandir botao-${i}" value="${i}" onclick="toExpandRow(this.value)">Expandir</button>
+                  </td>`;
     html += `</tr>`;
   });
 
@@ -158,7 +166,7 @@ linkMesAnterior.addEventListener("click", () => {
   // console.log("Ano Atual", anoAtual);
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
-  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
+  fazerSolicitacao(idFuncionarioSelecionado, mesAtual, anoAtual);
 });
 
 linkMesSeguinte.addEventListener("click", () => {
@@ -177,7 +185,7 @@ linkMesSeguinte.addEventListener("click", () => {
   // console.log("Ano Atual", anoAtual);
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
-  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
+  fazerSolicitacao(idFuncionarioSelecionado, mesAtual, anoAtual);
 });
 
 linkAnoAnterior.addEventListener("click", () => {
@@ -187,7 +195,7 @@ linkAnoAnterior.addEventListener("click", () => {
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
   document.querySelector(".exibir-ano").textContent = anoAtual;
-  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
+  fazerSolicitacao(idFuncionarioSelecionado, mesAtual, anoAtual);
 });
 
 linkAnoSeguinte.addEventListener("click", () => {
@@ -200,7 +208,7 @@ linkAnoSeguinte.addEventListener("click", () => {
   // console.log("Mes Inicial", mesInicial);
   // console.log("Ano Inicial", anoInicial);
   document.querySelector(".exibir-ano").textContent = anoAtual;
-  fazerSolicitacao(emailSelecionado, mesAtual, anoAtual);
+  fazerSolicitacao(idFuncionarioSelecionado, mesAtual, anoAtual);
 });
 
 // Função para converter a data no formato desejado
@@ -227,3 +235,9 @@ function getMonthName(mesAtual) {
   }
   return null; // Retornar null caso o mês não seja encontrado
 }
+
+function toExpandRow(i){
+  let rowToExpand = document.querySelector(`.linha-${i}`)
+  rowToExpand.classList.toggle("expanded");
+  }
+

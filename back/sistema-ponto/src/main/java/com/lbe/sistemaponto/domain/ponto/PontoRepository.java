@@ -5,11 +5,13 @@ import java.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
 
 
 public interface PontoRepository extends JpaRepository<Ponto, Long> {
-  Ponto findByDataCompleta(LocalDate dataCompleta);
-  Ponto findByDataCompletaAndLogin(LocalDate dataCompleta, String login);
 
-  Page<Ponto> findByLogin(String login, Pageable paginacao);
+  Page<Ponto> findByIdFuncionario(Long Id, Pageable paginacao);
+  Ponto findByIdFuncionarioAndDataCompleta(Long idFuncionario, LocalDate dataCompleta);
+
 }

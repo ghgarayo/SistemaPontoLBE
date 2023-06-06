@@ -8,16 +8,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosBatidaPonto(
-  @NotNull
-  LocalDate dataCompleta,
-  @NotNull
-  LocalTime horarioCompleto,
-  @NotBlank
-  String latitude,
-  @NotBlank
-  String longitude,
-  @Valid
-  String login
+
+        @Valid
+        Long idFuncionario,
+        @NotNull
+        LocalDate dataCompleta,
+        @NotNull
+        LocalTime horarioCompleto,
+        @NotBlank
+        String latitude,
+        @NotBlank
+        String longitude
 ) {
   
 }

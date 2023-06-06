@@ -16,6 +16,8 @@ let usuario = {
   admin: decodedPayload.admin,
 };
 
+// console.log(usuario)
+
 function clearStorageAndRedirect() {
   let credentials = sessionStorage.getItem("token");
   sessionStorage.clear();
@@ -92,8 +94,6 @@ const numberToMonth = [
     month: "Dezembro",
   },
 ];
-
-
 
 var dataAtual = new Date();
 

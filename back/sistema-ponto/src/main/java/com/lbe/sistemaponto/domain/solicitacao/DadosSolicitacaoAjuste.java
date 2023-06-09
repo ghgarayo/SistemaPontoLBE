@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public record DadosSolicitacaoAjuste(
+
+        // Record que passa as informações para a salvar a solicitação no Banco de Dados pela Solicitacao
         @NotNull
         Long idPonto,
         @NotNull
@@ -21,7 +23,6 @@ public record DadosSolicitacaoAjuste(
         LocalTime horarioEntrada2,
         @NotNull
         LocalTime horarioSaida2,
-        @NotBlank
         String descricaoSolicitacao
 ) {
 }

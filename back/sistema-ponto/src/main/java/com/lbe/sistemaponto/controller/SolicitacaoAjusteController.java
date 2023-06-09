@@ -25,32 +25,40 @@ public class SolicitacaoAjusteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosDetalhamentoAjuste> cadastrarSolicitacao(@RequestBody @Valid DadosSolicitacaoAjuste dados,
+    public ResponseEntity<DadosListagemSolicitacoes> cadastrarSolicitacao(@RequestBody @Valid DadosSolicitacaoAjuste dados,
                                                                         UriComponentsBuilder uriBuilder){
     var solicitacaoAjuste = new SolicitacaoAjuste(dados);
+    System.out.println("Solicitacao de ajuste: " + solicitacaoAjuste);
     repository.save(solicitacaoAjuste);
 
     var uri = uriBuilder.path("/solicitacao/{id}").buildAndExpand(solicitacaoAjuste.getId()).toUri();
 
-    return ResponseEntity.created(uri).body(new DadosDetalhamentoAjuste(solicitacaoAjuste));
+    return ResponseEntity.created(uri).body(new DadosListagemSolicitacoes(solicitacaoAjuste));
     }
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemSolicitacoes>> listarSolicitacoes(
-            @PageableDefault(size = 30, sort = { "id" }) Pageable paginacao){
+            @PageableDefault(size = 20, sort = { "id" }) Pageable paginacao){
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemSolicitacoes::new);
 
         return ResponseEntity.ok(page);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Object> finalizarSolicitacao(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> finalizarSolicitacao(@PathVariable Long id, @RequestBody DadosResponstaSolicitacao dados){
         var solicitacao = repository.getReferenceById(id);
-        solicitacao.finalizarSolicitacao();
+        solicitacao.finalizarSolicitacao(dados);
         repository.save(solicitacao);
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping({"/{id}"})
+    public ResponseEntity<DadosListagemSolicitacoes> detalharPorId(@PathVariable Long id){
+        System.out.println(id);
+        var solicitacao = repository.getReferenceById(id);
+        System.out.println(solicitacao);
+        return ResponseEntity.ok(new DadosListagemSolicitacoes(solicitacao));
 
+    }
 
 }

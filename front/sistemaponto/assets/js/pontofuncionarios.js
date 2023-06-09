@@ -118,7 +118,7 @@ function createHTML(data) {
   `;
 
   // Preencher os dados com base nos objetos do conteúdo
-  data.forEach((item,i) => {
+  data.forEach((item, i) => {
     html += `<tr class="linha-${i} linha-tabela">`;
     columnItems.forEach((column) => {
       const value = item[column.key];
@@ -236,8 +236,7 @@ function getMonthName(mesAtual) {
   return null; // Retornar null caso o mês não seja encontrado
 }
 
-function toExpandRow(i){
-  let rowToExpand = document.querySelector(`.linha-${i}`)
+function toExpandRow(i) {
+  let rowToExpand = document.querySelector(`.linha-${i}`);
   rowToExpand.classList.toggle("expanded");
-  }
-
+}

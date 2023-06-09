@@ -95,11 +95,10 @@ const numberToMonth = [
   },
 ];
 
-var dataAtual = new Date();
+let dataAtual = new Date();
 
-var anoAtual = dataAtual.getFullYear();
-var mesAtual = dataAtual.getMonth() + 1;
+let anoAtual = dataAtual.getFullYear();
+let mesAtual = dataAtual.getMonth() + 1;
 
 // console.log("Ano", anoAtual)
 // console.log("Mes", mesAtual)
-

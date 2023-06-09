@@ -1,0 +1,145 @@
+.main-container {
+  display: flex;
+  height: calc(100vh - 56px);
+}
+
+.content {
+  width: 90vw;
+  height:fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  
+  margin: 1.5rem auto;
+  padding: 1.5rem 0;  
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.solicitacao-titulo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: #012c6d;
+  border-top: 2px solid #fba02e;
+  border-bottom: 2px solid #fba02e;
+
+  color: #FFF;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+.solicitacao-ajuste{
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 6px;
+  margin: 5px 10px;
+  border-radius: 5px;
+  border: solid 1px #CCC;
+}
+
+
+.solicitacao-ajuste:nth-child(even) li input {
+  background-color: #FFF;
+  border: solid 1px #012c6d
+}
+
+.solicitacao-ajuste:nth-child(even) {
+  background-color: #ccc;
+  border: solid 1px #012c6d
+}
+
+.data{
+  display:flex;
+  width: 20%;
+}
+
+.data label{
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.data input{
+  font-size: 0.8rem;
+  width: 160%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.funcionario-nome{
+  display:flex;
+}
+
+.funcionario-nome label{
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.funcionario-nome input{
+  font-size: 0.8rem;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.botao-editar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  background-color: #012c6d;
+  border: 1px solid #3f88c5;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 75px;
+  height: 24px;
+}
+
+.botao-editar:hover{
+  background-color: #0a4d9e;
+}
+
+@media (min-width: 768px) and (max-width: 1024.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 70vw;
+  }
+}
+
+
+@media (min-width: 1024.56px) and (max-width: 1440.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 50vw;
+  }
+
+}
+
+@media (min-width: 1440.56px) {
+
+  .content{
+    min-width: 0px;
+    width: 50vw;
+  }
+
+  .solicitacoes-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+
+
+}

@@ -30,7 +30,7 @@ if (decodedPayload && decodedPayload.admin) {
     },
     {
       name: "Solicitações Ajustes",
-      url: "/pages/solicitacoesajuste.html",
+      url: "/pages/solicitacoesajustes.html",
       icon: "ajuste-calendario",
     },
   ];

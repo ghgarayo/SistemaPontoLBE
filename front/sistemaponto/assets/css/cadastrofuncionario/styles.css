@@ -1,5 +1,9 @@
+.side-menu{
+}
+
 .main-container {
-  height: calc(100vh - 56px);
+  /* height: calc(100vh - 56px); */
+  height: fit-content;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -7,17 +11,15 @@
 }
 
 .formulario-cadastro {
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 72px;
+  display: flex;
+  flex-direction: column;
   background-color: #012c6d;
-  padding: 1.5rem;
+  
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 5px;
   border: 2px solid #fba02e;
-  border-radius: 15px;
-  height: fit-content;
-  width: 50vw;
-  margin: auto;
-
+  
 }
 
 .funcionario-info,
@@ -47,10 +49,6 @@ input[type="password"]{
   margin-top: 4px;
 }
 
-input[type="checkbox"] {
-  
-}
-
 .admin-container{
   display: grid;
   grid-template-columns: auto 1fr;
@@ -59,11 +57,17 @@ input[type="checkbox"] {
   margin-top: 12px
 }
 
-.botao-cadastro {
-  grid-row: 2;
+.form-buttons{
+  display:grid;
+  grid-gap: 0.5rem;
+}
+
+
+.botao-cadastrar {
+  grid-row: 1;
   grid-column: span 2;
   padding: 8px 16px;
-  width: 33%;
+  width: 175px;
   
   cursor: pointer;
   color: #FFF;
@@ -76,6 +80,162 @@ input[type="checkbox"] {
 
 }
 
-botao-cadastro:hover {
+.botao-cadastrar:hover {
   background-color: #45a049;
+}
+
+.botao-voltar {
+  grid-row: 2;
+  grid-column: span 2;
+  padding: 8px 16px;
+  width: 175px;
+  
+  cursor: pointer;
+  color: #FFF;
+  
+  border: none;
+  border-radius: 4px;
+  background-color: #8F0000;
+
+  margin: 0 auto;
+
+}
+.botao-voltar:hover {
+  background-color: #450000;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 85vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .botao-voltar{
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024.55px) {
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 60vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .botao-voltar{
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+
+}
+
+@media (min-width: 1024.56px) and (max-width: 1440px) {
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 60vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .botao-voltar{
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+}
+
+
+@media (min-width: 1440.01px) {
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 60vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .botao-voltar{
+    grid-row: 1;
+    grid-column: 2;
+  }
+
 }

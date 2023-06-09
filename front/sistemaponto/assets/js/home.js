@@ -1,6 +1,6 @@
 if (!token) {
   window.location.href = "/index.html";
-} 
+}
 
 console.log(token)
 console.log(decodedPayload)
@@ -9,17 +9,17 @@ let boasVindas = () => {
   let html = `
                 <section class = \"container\">
                       <article class = \"detalhes-usuario-container"\>
-                              <p class=\"info-usuario\"> Usuário: <span class=\"nome-usuario\"> ${usuario.nome} </span></p>
-                              <p class=\"info-usuario\"> E-mail: <span class=\"email-usuario\"> ${usuario.email} </span></p>   
+                              <p class=\"info-usuario\"> <span>Usuário:</span> <span class=\"nome-usuario\">  ${usuario.nome} </span></p>
+                              <p class=\"info-usuario\"> <span>E-mail:</span> <span class=\"email-usuario\">  ${usuario.email} </span></p>
                       </article>
-                      
+
                       <div class =\"registro-ponto-container\">
                                 <img class= \"alert\" src=\"/assets/img/alerta.svg\">
                                 <h3 class =\"registro-ponto-title\"> Confira seu horário antes de registrar o ponto! </h3>
                                 <button class=\"botao-ponto\" onclick="registrarBatida()">Registrar Batida de Ponto</button>
                                 <p class= \"data-hora\" id=\"data-hora\"></p>
                       </div>
-                </section>                
+                </section>
               `;
 
   return html;
@@ -54,7 +54,7 @@ function registrarBatida() {
           "Content-Type": "application/json"
         };
 
-        fetch("http://localhost:8080/api/registro-ponto", {
+        fetch(`${URL}/api/registro-ponto`, {
             method: "POST",
             headers: headers,
             body: JSON.stringify(registroPonto)

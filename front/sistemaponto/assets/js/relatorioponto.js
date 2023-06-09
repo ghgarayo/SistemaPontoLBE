@@ -2,6 +2,10 @@ if (!token) {
   window.location.href = "/index.html";
 }
 
+let idFuncionario = usuario.id;
+sessionStorage.setItem("Funcionario", idFuncionario);
+console.log(idFuncionario);
+
 const columnItems = [
   { title: "Data", key: "dataCompleta" },
   { title: "Entrada", key: "horarioEntrada1" },
@@ -20,7 +24,7 @@ const columnItems = [
 
 // Realizar a chamada GET usando fetch
 // console.log(`${URL}/api/registro-ponto/${usuario.id}/${anoAtual}/${mesAtual}`);
-fetch(`${URL}/api/registro-ponto/${usuario.id}/${anoAtual}/${mesAtual}`, {
+fetch(`${URL}/api/registro-ponto/${idFuncionario}/${anoAtual}/${mesAtual}`, {
   method: "GET",
   headers: {
     Authorization: `Bearer ${token}`,
@@ -107,10 +111,11 @@ function converterFormatoData(data) {
   return dataFormatada;
 }
 
+
 // Função para fazer a solicitação GET com base no mês e ano
 function fazerSolicitacao(mes, ano) {
-  console.log(`${URL}/api/registro-ponto/${usuario.id}/${ano}/${mes}`)
-  fetch(`${URL}/api/registro-ponto/${usuario.id}/${ano}/${mes}`, {
+  console.log(`${URL}/api/registro-ponto/${idFuncionario}/${ano}/${mes}`)
+  fetch(`${URL}/api/registro-ponto/${idFuncionario}/${ano}/${mes}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -214,7 +219,7 @@ linkAnoSeguinte.addEventListener("click", () => {
   fazerSolicitacao(mesAtual, anoAtual);
 });
 
-function redirectToRequestAdjust(id){
+function redirectToRequestAdjust(id, idFuncionario){
   sessionStorage.setItem("id", id);
   window.location.href = "solicitarajuste.html";
 }

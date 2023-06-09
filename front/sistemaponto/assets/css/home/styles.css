@@ -4,8 +4,7 @@
 }
 
 .content {
-  min-width: 90vw;
-  width: 90vw;
+  width: 75vw;
   display: flex;
   flex-direction: column;
 
@@ -15,25 +14,17 @@
   border-radius: 5px;
 }
 
-/* 
-.main-container{
-  height: calc(100vh - 56px);
-
-  display:flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .container {
   display: flex;
   flex-direction: column;
 
-  width: 40vw;
-  height: 30vh;
+  width: 75vw;
+  height: 36vh;
 
   background-color: #012c6d;
 
-  padding: 1.5rem;
+  padding: 1.2rem;
   border: 2px solid #fba02e;
   border-radius: 15px;
 }
@@ -42,16 +33,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 12px;
 }
 
 .info-usuario,
 .nome-usuario,
 .email-usuario {
+  display: flex;
+  flex-direction: column;
   color: #fff;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .registro-ponto-container {
@@ -67,14 +60,12 @@
   height: 50px;
   margin-bottom: 16px;
 
-  filter: invert(74%) sepia(63%) saturate(1828%) hue-rotate(335deg)
-    brightness(99%) contrast(98%);
 }
 
 .registro-ponto-title,
 .data-hora {
   color: #fff;
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: 500;
   text-align: center;
   margin-bottom: 12px;
@@ -97,33 +88,242 @@
 }
 
 
-@media (min-width: 768px) and (max-width: 1024.55px) {
-
+@media (min-width: 320px) and (max-width: 767.55px) {
 
   .content{
-    min-width: 0px;
-    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    height: 32vh;
+    width: 80vw;
   }
+
+  .detalhes-usuario-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .info-usuario,
+  .nome-usuario,
+  .email-usuario{
+    flex-direction: row;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    gap: 5px;
+  }
+
+  .registro-ponto-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .data-hora,
+  .registro-ponto-title{
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .botao-ponto{
+    justify-self: center;
+    margin-bottom: 12px;
+
+    background-color: #67c7e1;
+    padding: 12px 8px;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 15px;
+  }
+
+
+  .botao-ponto:hover{
+    background-color: #5cb3e6;
+  }
+
+
+}
+
+@media (min-width: 767.56px) and (max-width: 1024.55px) {
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 45vw;
+    height: 32vh;
+  }
+
+  .detalhes-usuario-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .info-usuario,
+  .nome-usuario,
+  .email-usuario{
+    flex-direction: row;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    gap: 5px;
+  }
+
+  .registro-ponto-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .data-hora,
+  .registro-ponto-title{
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .botao-ponto{
+    justify-self: center;
+    margin-bottom: 12px;
+
+    background-color: #67c7e1;
+    padding: 12px 8px;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 15px;
+  }
+
+
+  .botao-ponto:hover{
+    background-color: #5cb3e6;
+  }
+
+
 }
 
 
 @media (min-width: 1024.56px) and (max-width: 1440.55px) {
 
-  .content{
-    min-width: 0px;
-    width: 50vw;
+  .container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 45vw;
+    height: 32vh;
   }
 
+  .detalhes-usuario-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .info-usuario,
+  .nome-usuario,
+  .email-usuario{
+    flex-direction: row;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    gap: 5px;
+  }
+
+  .registro-ponto-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .data-hora,
+  .registro-ponto-title{
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .botao-ponto{
+    justify-self: center;
+    margin-bottom: 12px;
+
+    background-color: #67c7e1;
+    padding: 12px 8px;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 15px;
+  }
+
+
+  .botao-ponto:hover{
+    background-color: #5cb3e6;
+  }
 }
 
 @media (min-width: 1440.56px) {
-  .side-menu{
-    max-width: 15vw;
+  
+  .container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 30vw;
+    height: 32vh;
   }
 
-  .content{
-    min-width: 0px;
-    width: 50vw;
+  .detalhes-usuario-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
   }
 
+  .info-usuario,
+  .nome-usuario,
+  .email-usuario{
+    flex-direction: row;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    gap: 5px;
+  }
+
+  .registro-ponto-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .data-hora,
+  .registro-ponto-title{
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .botao-ponto{
+    justify-self: center;
+    margin-bottom: 12px;
+
+    background-color: #67c7e1;
+    padding: 12px 8px;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 15px;
+  }
+
+
+  .botao-ponto:hover{
+    background-color: #5cb3e6;
+  }
 }

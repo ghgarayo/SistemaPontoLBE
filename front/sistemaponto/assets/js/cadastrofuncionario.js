@@ -69,3 +69,7 @@ document
         alert("Ocorreu um erro. Por favor, tente novamente mais tarde.");
       });
   });
+
+function cancelarCriacaoFuncionario() {
+  window.location.href = "/pages/funcionarios.html";
+}

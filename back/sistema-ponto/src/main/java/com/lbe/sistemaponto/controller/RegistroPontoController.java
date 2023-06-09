@@ -39,7 +39,6 @@ public class RegistroPontoController {
             UriComponentsBuilder uriBuilder) {
 
         Ponto registroPonto = repository.findByIdFuncionarioAndDataCompleta(dados.idFuncionario(),dados.dataCompleta());
-        System.out.println(registroPonto);
 
         if (registroPonto == null || registroPonto.getIdFuncionario() != dados.idFuncionario()) {
             var dadosBatida = new Ponto(dados);
@@ -57,7 +56,6 @@ public class RegistroPontoController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosListagemPonto> listarRegistroPorId(@PathVariable Long id){
         var registroPonto = repository.getReferenceById(id);
-        System.out.println(registroPonto);
         return ResponseEntity.ok(new DadosListagemPonto(registroPonto));
     }
 
@@ -67,7 +65,6 @@ public class RegistroPontoController {
             @PathVariable int ano, @PathVariable int mes,
             @PageableDefault(size = 30, sort = { "dataCompleta" }) Pageable paginacao) {
         var registrosPonto = repository.findByIdFuncionario(idFuncionario, paginacao).map(DadosListagemPonto::new).getContent();
-        System.out.println(registrosPonto);
         var registrosFiltrados = filtrarRegistrosPorAnoEMes(registrosPonto, ano, mes);
 
         return ResponseEntity.ok(registrosFiltrados);

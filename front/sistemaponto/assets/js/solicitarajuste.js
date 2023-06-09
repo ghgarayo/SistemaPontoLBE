@@ -1,5 +1,7 @@
 let idPontoParaAjuste = sessionStorage.getItem("id");
 // console.log("ID Ponto para ajuste", idPontoParaAjuste);
+let idFuncionarioParaAjuste = sessionStorage.getItem("Funcionario");
+// console.log("ID Funcionario para ajuste", idFuncionarioParaAjuste);
 
 const formFields = [
   { title: "Data: ", key: "dataCompleta" },
@@ -83,39 +85,29 @@ function submitRequestForApproval() {
   //Obtem os valores dos campos de entrada;
   let dataCompleta = document.getElementById("dataCompleta").value;
   let horarioEntrada1 = document.getElementById("horarioEntrada1").value;
-  let latitudeEntrada1 = document.getElementById("latitudeEntrada1").value;
-  let longitudeEntrada1 = document.getElementById("longitudeEntrada1").value;
   let horarioSaida1 = document.getElementById("horarioSaida1").value;
-  let latitudeSaida1 = document.getElementById("latitudeSaida1").value;
-  let longitudeSaida1 = document.getElementById("longitudeSaida1").value;
   let horarioEntrada2 = document.getElementById("horarioEntrada2").value;
-  let latitudeEntrada2 = document.getElementById("latitudeEntrada2").value;
-  let longitudeEntrada2 = document.getElementById("longitudeEntrada2").value;
   let horarioSaida2 = document.getElementById("horarioSaida2").value;
-  let latitudeSaida2 = document.getElementById("latitudeSaida2").value;
-  let longitudeSaida2 = document.getElementById("longitudeSaida2").value;
   let observacoes = document.getElementById("observacoes").value;
 
+
+  // Cria um objeto com os dados da solicitação para enviar como body
   let ajustePonto = {
+    idPonto : idPontoParaAjuste,
+    idFuncionario: idFuncionarioParaAjuste,
     dataCompleta : dataCompleta,
     horarioEntrada1 : horarioEntrada1,
-    latitudeEntrada1 : latitudeEntrada1,
-    longitudeEntrada1 : longitudeEntrada1,
     horarioSaida1 : horarioSaida1,
-    latitudeSaida1 : latitudeSaida1,
-    longitudeSaida1 : latitudeSaida1,
     horarioEntrada2 : horarioEntrada2,
-    latitudeEntrada2 : latitudeEntrada2,
-    longitudeEntrada2 : longitudeEntrada2,
     horarioSaida2 : horarioSaida2,
-    latitudeSaida2 : latitudeSaida2,
-    longitudeSaida2 : longitudeEntrada2,
-    observacoes : observacoes
+    descricaoSolicitacao : observacoes
   }
     
+  // console.log(ajustePonto)
 
-  fetch(`${URL}/api/registro-ponto/${idPontoParaAjuste}`, {
-    method: "PUT",
+  // Realizar a chamada POST usando fetch para enviar a solicitação de ajuste;
+  fetch(`${URL}/api/solicitar-ajuste`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -133,11 +125,10 @@ function submitRequestForApproval() {
     })
     .then((data) => {
       console.log(data);
-      window.location.href = "pontofuncionarios.html";
+      window.location.href = "relatorioponto.html";
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-// Realizar a chamada POST usando fetch para enviar a solicitação de ajuste;

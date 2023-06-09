@@ -3,8 +3,8 @@
   top: 56px;
   height: calc(100vh - 56px);
 
-  left: -45vw;
-  width: 45vw;
+  left: -260px;
+  width: 230px;
 
   background-color: #012c6d;
   border-right: 1px solid #fba02e;
@@ -57,8 +57,8 @@
 @media (min-width: 480px) and (max-width: 768px) {
   .side-menu {
     grid-column: 1;
-    left: -40vw;
-    width: 40vw;
+    width: 230px;
+
   }
 }
 
@@ -67,11 +67,9 @@
   .side-menu {
     position: inherit;
     height: calc(100vh - 56px);
-
-    left: 0;
-    width: 25vw;
-
     transition: none;
+    width: 230px;
+
   }
 
   .side-menu.collapsed {
@@ -84,9 +82,8 @@
   .side-menu {
     position: inherit;
     height: calc(100vh - 56px);
+    width: 230px;
 
-    left: 0;
-    width: 18vw;
 
     transition: none;
   }
@@ -101,9 +98,7 @@
   .side-menu {
     position: inherit;
     height: calc(100vh - 56px);
-
-    left: 0;
-    width: 15vw;
+    width: 230px;
 
     transition: none;
   }

@@ -50,12 +50,19 @@ input[type="password"]{
 }
 
 .admin-container{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 4px;
+  margin-top: 12px;
+  width: max-content;
+
+  display:flex;
+  flex-direction: row;
   align-items: baseline;
-  margin-top: 12px
+  justify-content: center;
 }
+
+input[type="checkbox"]{
+  margin: 0 4px;
+}
+
 
 .form-buttons{
   display:grid;
@@ -182,7 +189,7 @@ input[type="password"]{
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
     height: fit-content;
-    width: 60vw;
+    width: 55vw;
     margin: 1rem auto;  
   }  
   
@@ -215,8 +222,8 @@ input[type="password"]{
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
     height: fit-content;
-    width: 60vw;
-    margin: 1rem auto;  
+    width: 50vw;
+    margin: 2rem auto;  
   }  
   
   .form-buttons{

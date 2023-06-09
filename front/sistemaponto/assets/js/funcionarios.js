@@ -36,7 +36,7 @@ let tabelaFuncionarios = (data) => {
 
   let html = `
       <div class="cabecalho-tabela">
-        <h1>Lista de Funcionários</h1>
+        <h1>Lista de Funcionários</h1>       
       </div>
       <div class="header-tabela">
         <ul class="coluna-tabela">
@@ -75,6 +75,9 @@ let tabelaFuncionarios = (data) => {
   html += `
         </ul>
       </div>
+      <div class="adiciona-funcionario">
+      <button type="button"class="botao-cadastrar" onclick="redirectTo()">Novo</button>
+      </div>
   `;
 
   return html;
@@ -107,3 +110,6 @@ function inativarUsuario(idFuncionario) {
     });
 }
 
+function redirectTo() {
+  window.location.href = "/pages/cadastrofuncionario.html";
+}

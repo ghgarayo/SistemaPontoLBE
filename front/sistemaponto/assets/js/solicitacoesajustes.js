@@ -67,19 +67,19 @@ function criarHTML(data) {
   var currentPage = data.number + 1;
 
   // Iniciar a criação do HTML
-  let html = "<h1 class='solicitacao-titulo'>Solicitações de ajuste de ponto aguardando avaliação </h1>";
+  let html = "<h1 class='solicitacao-titulo'>Solicitações de ajuste: </h1>";
   html += "<div class='solicitacoes-container'>";
   content.forEach((item, i) => {
     nomeFuncionario = getNomeFuncionario(item.idFuncionario);
     html += `<ul class = "solicitacao-ajuste linha-${i}" >`;
     html += `<li class="data"><label>Data:</label><input value="${converterFormatoData(item.dataCompleta)}" disabled/></li>`;
-    html += `<li class="funcionario-nome"><label>Nome do Funcionário:</label><input value="${nomeFuncionario}" disabled/></li>`;
+    html += `<li class="funcionario-nome"><label>Funcionário:</label><input value="${nomeFuncionario}" disabled/></li>`;
     // html += `<li><label>Horario Entrada 1:</label><input value="${item.horarioEntrada1}"/></li>`;
     // html += `<li><label>Horario Saida 1:</label><input value="${item.horarioSaida1}"/></li>`;
     // html += `<li><label>Horario Entrada 2:</label><input value="${item.horarioEntrada2}"/></li>`;
     // html += `<li><label>Horario Saida 2:</label><input value="${item.horarioSaida2}"/></li>`;
-    html += `<li>                
-              <button class="botao-opçoes botao-editar" onclick="toRedirectToOptions(${item.id},${item.idPonto})">Visualizar</button>
+    html += `<li class="button-container">                
+              <button type="button" class="botao-opçoes botao-editar" onclick="toRedirectToOptions(${item.id},${item.idPonto})">Visualizar</button>
              </li>`;
 
     html += `</ul>`;

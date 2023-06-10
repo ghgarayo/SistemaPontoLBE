@@ -29,22 +29,31 @@
   border-bottom: 2px solid #fba02e;
 
   color: #FFF;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
 }
 
+.solicitacoes-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
 
 .solicitacao-ajuste{
   display: flex;
-  justify-content:space-between;
-  align-items:center;
+  flex-direction: column;
+  width: 80%;
   padding: 6px;
   margin: 5px 10px;
+  gap: 5px;	
   border-radius: 5px;
   border: solid 1px #CCC;
 }
-
 
 .solicitacao-ajuste:nth-child(even) li input {
   background-color: #FFF;
@@ -58,17 +67,19 @@
 
 .data{
   display:flex;
-  width: 20%;
+  justify-content:space-between;
 }
 
 .data label{
   font-size: 0.9rem;
-  width: 100%;
+  width: fit-content;
 }
 
 .data input{
+  display:flex;
+  text-align: center;
   font-size: 0.8rem;
-  width: 160%;
+  width: 75px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -84,14 +95,20 @@
 
 .funcionario-nome input{
   font-size: 0.8rem;
-  width: 100%;
+  text-align: center;
+  width: 150px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
-.botao-editar{
+.button-container{
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.botao-editar{
+  display: flex;
   align-items: center;
   color: #FFF;
   background-color: #012c6d;
@@ -106,29 +123,11 @@
   background-color: #0a4d9e;
 }
 
-@media (min-width: 768px) and (max-width: 1024.55px) {
+@media (min-width: 320px) and (max-width: 480px) {
 
   .content{
     min-width: 0px;
-    width: 70vw;
-  }
-}
-
-
-@media (min-width: 1024.56px) and (max-width: 1440.55px) {
-
-  .content{
-    min-width: 0px;
-    width: 50vw;
-  }
-
-}
-
-@media (min-width: 1440.56px) {
-
-  .content{
-    min-width: 0px;
-    width: 50vw;
+    width: 90vw;
   }
 
   .solicitacoes-container{
@@ -140,6 +139,190 @@
     padding: 1.5rem 0;
   }
 
+  .solicitacao-ajuste{
+    width: 90%;
+  }
+
+  .data {
+    min-width: 20%;
+  }
+
+  .funcionario-nome input{
+    width: 250px;
+  }
+}
+
+
+@media (min-width: 481px) and (max-width: 767.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 90vw;
+  }
+
+  .solicitacao-titulo{
+    font-size: 1.5rem;
+  }
+
+
+  .solicitacoes-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  .solicitacao-ajuste{
+    flex-direction:row;
+    justify-content:space-between;
+    width: 90%;
+  }
+
+  .data{
+    min-width:25%;
+  }
+
+  .funcionario-nome{
+    display:flex;
+    min-width:45%;
+ }
+
+  .botao-editar{
+    width: 75px;
+    height: 20px;
+  }
+
+}
+
+
+
+@media (min-width: 767.56px) and (max-width: 1024.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 65vw;
+  }
+
+  .solicitacao-titulo{
+    font-size: 1.5rem;
+  }
+
+
+  .solicitacoes-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  .solicitacao-ajuste{
+    flex-direction:row;
+    justify-content:space-between;
+    width: 90%;
+  }
+
+  .data{
+    min-width:25%;
+  }
+
+  .funcionario-nome{
+    display:flex;
+    min-width:45%;
+ }
+
+  .botao-editar{
+    width: 75px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 1024.56px) and (max-width: 1440.55px) {
+
+  .content{
+    min-width: 0px;
+    width: 45vw;
+  }
+
+  .solicitacao-titulo{
+    font-size: 1.5rem;
+  }
+
+
+  .solicitacoes-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  .solicitacao-ajuste{
+    flex-direction:row;
+    justify-content:space-between;
+    width: 90%;
+  }
+
+  .data{
+    min-width:25%;
+  }
+
+  .funcionario-nome{
+    display:flex;
+    min-width:45%;
+ }
+
+  .botao-editar{
+    width: 75px;
+    height: 20px;
+  }
+
+}
+
+@media (min-width: 1440.56px) {
+
+  .content{
+    min-width: 0px;
+    width: 40vw;
+  }
+
+  .solicitacao-titulo{
+    font-size: 1.5rem;
+  }
+
+
+  .solicitacoes-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  .solicitacao-ajuste{
+    flex-direction:row;
+    justify-content:space-between;
+    width: 90%;
+  }
+
+  .data{
+    min-width:25%;
+  }
+
+  .funcionario-nome{
+    display:flex;
+    min-width:45%;
+ }
+
+  .botao-editar{
+    width: 75px;
+    height: 20px;
+  }
 
 
 }

@@ -9,17 +9,9 @@ console.log(idFuncionario);
 const columnItems = [
   { title: "Data", key: "dataCompleta" },
   { title: "Entrada", key: "horarioEntrada1" },
-  // { title: "Latitude", key: "latitudeEntrada1" },
-  // { title: "Longitude", key: "longitudeEntrada1" },
   { title: "Saída", key: "horarioSaida1" },
-  // { title: "Latitude", key: "latitudeSaida1" },
-  // { title: "Longitude", key: "longitudeSaida1" },
   { title: "Entrada", key: "horarioEntrada2" },
-  // { title: "Latitude", key: "latitudeEntrada2" },
-  // { title: "Longitude", key: "longitudeEntrada2" },
   { title: "Saída", key: "horarioSaida2" },
-  // { title: "Latitude", key: "latitudeSaida2" },
-  // { title: "Longitude", key: "longitudeSaida2" },
 ];
 
 // Realizar a chamada GET usando fetch
@@ -83,8 +75,7 @@ function createHTML(data) {
       }</td>`;
     });
     html += `<td class="ponto-actions-container">
-                  <button class="botao-ajuste" value=${item.id} onclick="redirectToRequestAdjust(this.value)">Ajuste</button>
-                  <button class="botao-ajuste">Expandir</button>
+                  <button class="botao-ajuste" value=${item.id} onclick="redirectTo(this.value)">Ajustar</button>
                   </td>`;
     html += `</tr>`;
   });
@@ -219,7 +210,7 @@ linkAnoSeguinte.addEventListener("click", () => {
   fazerSolicitacao(mesAtual, anoAtual);
 });
 
-function redirectToRequestAdjust(id, idFuncionario){
+function redirectTo(id, idFuncionario){
   sessionStorage.setItem("id", id);
   window.location.href = "solicitarajuste.html";
 }

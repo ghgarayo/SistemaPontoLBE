@@ -128,7 +128,7 @@ function createHTML(data) {
         formattedValue !== null ? formattedValue : "-- : -- : --"
       }</td>`;
     });
-    html += `<td class="ponto-actions-container">
+    html += `  <td class="ponto-actions-container">
                   <button class="botao-expandir botao-${i}" value="${i}" onclick="toExpandRow(this.value)">Expandir</button>
                   </td>`;
     html += `</tr>`;

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.*;
 
 @Table(name = "registro_ponto")
@@ -88,8 +87,25 @@ public class Ponto {
     }
 
     throw new Error("Já foram efetuados os registros para o dia " + dataCompleta.getDayOfMonth());
-
   }
 
+  public void ajustePonto(DadosAjustePonto dados) {
 
+    if (dados.horarioEntrada1() != this.horarioEntrada1 || this.horarioEntrada1 == null) {
+      this.horarioEntrada1 = dados.horarioEntrada1();
+    }
+
+    if (dados.horarioSaida1() != this.horarioSaida1  || this.horarioSaida1 == null) {
+      this.horarioSaida1 = dados.horarioSaida1();
+    }
+
+    if (dados.horarioEntrada2() != this.horarioEntrada2  || this.horarioEntrada2 == null) {
+      this.horarioEntrada2 = dados.horarioEntrada1();
+    }
+
+    if (dados.horarioSaida2() != this.horarioSaida2  || this.horarioSaida2 == null) {
+      this.horarioSaida2 = dados.horarioSaida2();
+    }
+  }
 }
+

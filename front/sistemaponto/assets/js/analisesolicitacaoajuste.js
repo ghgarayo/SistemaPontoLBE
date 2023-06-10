@@ -2,6 +2,7 @@ if (!token) {
   window.location.href = "/index.html";
 }
 
+
 const formFields = [
   { title: "Data: ", key: "dataCompleta" },
   { title: "Entrada 1: ", key: "horarioEntrada1" },
@@ -11,9 +12,21 @@ const formFields = [
 ];
 
 let idPontoParaAjuste = sessionStorage.getItem("idPonto");
-let registroSolicitacaoAjuste = sessionStorage.getItem(
-  "registroSolicitacaoAjuste"
-);
+let registroSolicitacaoAjuste = sessionStorage.getItem("registroSolicitacaoAjuste");
+
+let descricaoResposta = "";
+let buttonSubmit = document.querySelector("#botao-salvar");
+let dataHora = new Date();
+let dataCompletaAgora = dataHora.toISOString().split("T")[0];
+let horaCompletaAgora = dataHora.toTimeString().split(" ")[0];
+
+let ajustePonto = {
+  horarioEntrada1: "",
+  horarioSaida1: "",
+  horarioEntrada2: "",
+  horarioSaida2: "",
+};
+
 
 // Realizar a chamada GET usando fetch com o ID para buscar o registo à ser editado;
 fetch(`${URL}/api/registro-ponto/${idPontoParaAjuste}`, {
@@ -103,6 +116,11 @@ fetch(`${URL}/api/solicitar-ajuste/${registroSolicitacaoAjuste}`, {
   })
   .then((data) => {
     idPontoParaAjuste = data.id;
+    ajustePonto.idPonto = idPontoParaAjuste;
+    ajustePonto.horarioEntrada1 = data.horarioEntrada1;
+    ajustePonto.horarioSaida1 = data.horarioSaida1;
+    ajustePonto.horarioEntrada2 = data.horarioEntrada2;
+    ajustePonto.horarioSaida2 = data.horarioSaida2;
     // chamada da função para criar a tabela com as informações de ajuste
     document.querySelector(".content-2").innerHTML =
       criarTabelaSolicitacaoAlteracao(data);
@@ -111,12 +129,13 @@ fetch(`${URL}/api/solicitar-ajuste/${registroSolicitacaoAjuste}`, {
     console.error("Erro ao recuperar lista de solicitações:", error);
   });
 
+console.log(ajustePonto);
+
 // Função para criar a tabela com as informações de ajuste
 function criarTabelaSolicitacaoAlteracao(data) {
   // Iniciar a criação do HTML
 
   // console.log(data);
-
   let html = "<div class='solicitacoes-container'>";
   html += "<h1 class='solicitacao-titulo'> Sugestão de alteração </h1>";
   html += `<ul class = "solicitacao-ajuste" >`;
@@ -145,7 +164,7 @@ console.log(resposta);
 // Função para atualizar a variável resposta com a opção selecionada no menu suspenso
 function setResposta(selectedResposta) {
   resposta = selectedResposta;
-  console.log(resposta);
+  // console.log(resposta);
   updateJustificativa(resposta);
 }
 
@@ -157,7 +176,7 @@ function updateJustificativa(resposta) {
   if (resposta === "REPROVADO") {
     justificativaContainer.innerHTML = criarRespostaSolicitacao(resposta);
     justificativaContainer.classList.toggle("reprovado");
-  } else{
+  } else {
     justificativaContainer.classList.remove("reprovado");
   }
 }
@@ -165,10 +184,9 @@ function updateJustificativa(resposta) {
 // Função para criar o HTML da justificativa caso a resposta seja "REPROVADO"
 function criarRespostaSolicitacao(resposta) {
   if (resposta == "REPROVADO") {
-    console.log("entrou");
     return `
                 <label for="justificativa" class="justificativa-titulo descricao-titulo">Justificativa:</label>
-                <textarea id="justificativa" name="justificativa" class="justificativa-input solicitacao-observacao" rows="4" cols="25" placeholder="Digite aqui a justificativa para a reprovação da solicitação." required></textarea>
+                <textarea id="justificativa" name="justificativa" class="justificativa-input solicitacao-observacao" rows="4" cols="25" placeholder="Digite aqui a justificativa para a reprovação da solicitação."></textarea>
           `;
   }
 }
@@ -190,7 +208,8 @@ function criarTabelaAcoes() {
         <button 
           type="button" 
           class="botao-salvar" 
-          onclick="finalizarSolicitacaoAjuste()"
+          id ="botao-salvar" 
+          onclick="finalizarSolicitacaoAjuste(resposta)"
         >Finalizar</button>
         <button 
           type="button" 
@@ -206,6 +225,121 @@ function criarTabelaAcoes() {
 
 // Atualiza o conteúdo da classe "content-3" com a tabela de ações gerada
 document.querySelector(".content-3").innerHTML = criarTabelaAcoes();
+
+// Função para finalizar a solicitação de ajuste
+function finalizarSolicitacaoAjuste(resposta) {
+  // Verificar se a resposta foi alterada
+  console.log("Finalizar Solicitacao:", resposta);
+  switch (resposta) {
+    case "REPROVADO":
+      descricaoResposta = document.getElementById("justificativa").value;
+      if (descricaoResposta === "" || descricaoResposta === null) {
+        alert(
+          "É necessário inserir uma justificativa para a reprovação da solicitação."
+        );
+      } else {
+        // Cria o objeto que será enviado para o back-end
+        const respostaSolicitacao = {
+          idAdmin: usuario.id,
+          horaCompleta: horaCompletaAgora,
+          dataCompleta: dataCompletaAgora,
+          resposta: resposta,
+          descricaoResposta: descricaoResposta,
+        };
+
+        finalizaSolicitacao(respostaSolicitacao);
+
+      }
+      break;
+
+    case "APROVADO":
+      // Criação dos objetos que serão enviados para o back-end
+      // Resposta da solicitacao que será enviado para "SolicitacaoAjusteController"
+      const respostaSolicitacao = {
+        idAdmin: usuario.id,
+        horaCompleta: horaCompletaAgora,
+        dataCompleta: dataCompletaAgora,
+        resposta: resposta,
+        descricaoResposta: descricaoResposta,
+      };
+      
+     // Finalizar a solicitação de ajuste
+      finalizaSolicitacao(respostaSolicitacao);
+      // Enviar a o ajuste do ponto para o banco de dados
+      ajustarPonto(ajustePonto);
+      break;
+      
+      case "EM_ANALISE":
+        default:
+          cancelarEdicao();
+          break;
+        }
+}
+
+// Função para finalizar a solicitação de ajuste em caso de "REPROVADO" ou "APROVADO"
+function finalizaSolicitacao(respostaSolicitacao){
+  let headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
+
+  fetch(`${URL}/api/solicitar-ajuste/${idPontoParaAjuste}`, {
+    method: "DELETE",
+    headers: headers,
+    body: JSON.stringify(respostaSolicitacao),
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(
+          "Ocorreu um erro ao finalizar a solicitação de ajuste."
+        );
+      }
+    })
+    .then(function (data) {
+      console.log(data);
+      alert("Solicitação finalizada com sucesso!");
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert(error.message);
+    });
+    cancelarEdicao();
+}
+
+// Função para realizar o ajuste do Ponto em caso de "APROVADO"
+function ajustarPonto(ajustePonto){
+  let headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
+
+  fetch(`${URL}/api/registro-ponto/${idPontoParaAjuste}`, {
+    method: "PUT",
+    headers: headers,
+    body: JSON.stringify(ajustePonto),
+})
+.then(function (response) {
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error(
+      "Ocorreu um erro ao realizar o ajuste do ponto."
+    );
+  }
+})
+.then(function (data) {
+  console.log(data);
+  alert("Ajuste do ponto realizado com sucesso!");
+})
+.catch(function (error) {
+  console.log(error);
+  alert(error.message);
+});
+cancelarEdicao();
+
+}
 
 // Função para converter a data do formato yyyy-MM-dd para dd/MM/yyy
 function converterFormatoData(data) {

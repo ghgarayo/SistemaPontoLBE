@@ -60,7 +60,7 @@ public class SolicitacaoAjuste {
         this.ativo = true;
     }
 
-    public String finalizarSolicitacao(DadosResponstaSolicitacao dados) {
+    public void finalizarSolicitacao(DadosResponstaSolicitacao dados) {
         this.ativo = false;
         this.idAdmin = dados.idAdmin();
         this.horaCompleta = dados.horaCompleta();
@@ -69,7 +69,6 @@ public class SolicitacaoAjuste {
         if(dados.descricaoResposta() != null) {
             this.descricaoResposta = dados.descricaoResposta();
         }
-        return "Solicitação finalizada com sucesso!";
     }
 
 }

@@ -29,6 +29,7 @@ async function handleSubmit(e) {
     }
   })
   .catch(error => {
+    alert("Login ou senha incorretos!");
     console.error(error);
   });
 

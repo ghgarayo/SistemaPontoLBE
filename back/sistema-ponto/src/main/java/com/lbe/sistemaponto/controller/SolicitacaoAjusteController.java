@@ -19,18 +19,12 @@ public class SolicitacaoAjusteController {
     @Autowired
     private SolicitacaoAjusteRepository repository;
 
-    @Autowired
-    private PontoRepository pontoRepository;
-
-
     @PostMapping
     @Transactional
     public ResponseEntity<DadosListagemSolicitacoes> cadastrarSolicitacao(@RequestBody @Valid DadosSolicitacaoAjuste dados,
                                                                         UriComponentsBuilder uriBuilder){
     var solicitacaoAjuste = new SolicitacaoAjuste(dados);
-    System.out.println("Solicitacao de ajuste: " + solicitacaoAjuste);
     repository.save(solicitacaoAjuste);
-
     var uri = uriBuilder.path("/solicitacao/{id}").buildAndExpand(solicitacaoAjuste.getId()).toUri();
 
     return ResponseEntity.created(uri).body(new DadosListagemSolicitacoes(solicitacaoAjuste));
@@ -49,6 +43,7 @@ public class SolicitacaoAjusteController {
         var solicitacao = repository.getReferenceById(id);
         solicitacao.finalizarSolicitacao(dados);
         repository.save(solicitacao);
+
         return ResponseEntity.noContent().build();
     }
 
@@ -56,7 +51,7 @@ public class SolicitacaoAjusteController {
     public ResponseEntity<DadosListagemSolicitacoes> detalharPorId(@PathVariable Long id){
         System.out.println(id);
         var solicitacao = repository.getReferenceById(id);
-        System.out.println(solicitacao);
+
         return ResponseEntity.ok(new DadosListagemSolicitacoes(solicitacao));
 
     }

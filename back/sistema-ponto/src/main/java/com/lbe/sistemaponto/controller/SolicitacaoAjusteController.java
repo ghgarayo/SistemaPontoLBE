@@ -1,7 +1,7 @@
 package com.lbe.sistemaponto.controller;
 
-import com.lbe.sistemaponto.domain.ponto.PontoRepository;
 import com.lbe.sistemaponto.domain.solicitacao.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,24 +10,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/api/solicitar-ajuste")
+@SecurityRequirement(name = "bearer-key")
 public class SolicitacaoAjusteController {
 
     @Autowired
     private SolicitacaoAjusteRepository repository;
 
+   @Autowired
+    private SolicitacaoAjusteService solicitacaoAjusteService;
+
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosListagemSolicitacoes> cadastrarSolicitacao(@RequestBody @Valid DadosSolicitacaoAjuste dados,
-                                                                        UriComponentsBuilder uriBuilder){
-    var solicitacaoAjuste = new SolicitacaoAjuste(dados);
-    repository.save(solicitacaoAjuste);
-    var uri = uriBuilder.path("/solicitacao/{id}").buildAndExpand(solicitacaoAjuste.getId()).toUri();
+    public ResponseEntity<DadosDetalhamentoSolicitacaoAjuste> criarSolicitacao(@RequestBody @Valid DadosSolicitacaoAjuste dados){
+    var solicitacaoAjuste = solicitacaoAjusteService.criar(dados);
 
-    return ResponseEntity.created(uri).body(new DadosListagemSolicitacoes(solicitacaoAjuste));
+    return ResponseEntity.ok(solicitacaoAjuste);
     }
 
     @GetMapping
@@ -39,21 +39,18 @@ public class SolicitacaoAjusteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> finalizarSolicitacao(@PathVariable Long id, @RequestBody DadosResponstaSolicitacao dados){
-        var solicitacao = repository.getReferenceById(id);
-        solicitacao.finalizarSolicitacao(dados);
-        repository.save(solicitacao);
+    @Transactional
+    public ResponseEntity<Object> finalizarSolicitacao(@PathVariable Long id, @RequestBody @Valid DadosRespostaSolicitacao dados){
+        solicitacaoAjusteService.finalizarSolicitacao(id, dados);
 
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping({"/{id}"})
     public ResponseEntity<DadosListagemSolicitacoes> detalharPorId(@PathVariable Long id){
-        System.out.println(id);
-        var solicitacao = repository.getReferenceById(id);
-
-        return ResponseEntity.ok(new DadosListagemSolicitacoes(solicitacao));
-
+        var solicitacao = solicitacaoAjusteService.detalhar(id);
+        
+        return ResponseEntity.ok(solicitacao);
     }
 
 }

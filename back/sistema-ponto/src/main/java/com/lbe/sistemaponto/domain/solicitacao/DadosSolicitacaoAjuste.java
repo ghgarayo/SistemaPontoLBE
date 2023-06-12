@@ -1,6 +1,6 @@
 package com.lbe.sistemaponto.domain.solicitacao;
 
-import jakarta.validation.constraints.NotBlank;
+
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;

@@ -2,8 +2,21 @@ if (!token) {
   window.location.href = "/index.html";
 }
 
-console.log(token)
-console.log(decodedPayload)
+function exibirDataHora() {
+  let dataHoraElement = document.getElementById("data-hora");
+  let dataHora = new Date();
+
+  // Formatar data e hora
+  let data = dataHora.toLocaleDateString();
+  let hora = dataHora.toLocaleTimeString();
+
+  // Exibir resultado
+  dataHoraElement.textContent = "Data: " + data + " Hora: " + hora;
+}
+
+// Atualizar data e hora a cada segundo
+setInterval(exibirDataHora, 1000);
+
 
 let boasVindas = () => {
   let html = `
@@ -47,7 +60,7 @@ function registrarBatida() {
           longitude: longitude,
         };
 
-        console.log(registroPonto);
+        // console.log(registroPonto);
 
         let headers = {
           "Authorization": `Bearer ${token}`,
@@ -71,8 +84,7 @@ function registrarBatida() {
             alert("Batida de ponto registrada com sucesso!");
           })
           .catch(function (error) {
-            console.log(error);
-            alert(error.message);
+            console.log(error.message);
           });
       },
       function (error) {
@@ -84,17 +96,4 @@ function registrarBatida() {
   }
 }
 
-function exibirDataHora() {
-  let dataHoraElement = document.getElementById("data-hora");
-  let dataHora = new Date();
 
-  // Formatar data e hora
-  let data = dataHora.toLocaleDateString();
-  let hora = dataHora.toLocaleTimeString();
-
-  // Exibir resultado
-  dataHoraElement.textContent = "Data: " + data + " Hora: " + hora;
-}
-
-// Atualizar data e hora a cada segundo
-setInterval(exibirDataHora, 1000);

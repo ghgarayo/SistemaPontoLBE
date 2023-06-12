@@ -25,6 +25,8 @@ public record DadosCadastroFuncionario(
     @NotBlank
     String rg,
     @Valid
-    DadosEndereco endereco) {
+    DadosEndereco endereco,
+
+    Boolean isAdmin) {
 
 }

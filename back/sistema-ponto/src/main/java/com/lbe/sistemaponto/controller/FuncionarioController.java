@@ -1,5 +1,6 @@
 package com.lbe.sistemaponto.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/funcionarios")
+@SecurityRequirement(name = "bearer-key")
 public class FuncionarioController {
 
     @Autowired

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record DadosResponstaSolicitacao(
+public record DadosRespostaSolicitacao(
         @NotNull
         Long idAdmin,
         @NotNull

@@ -1,7 +1,5 @@
 package com.lbe.sistemaponto.domain.funcionario;
 
-import com.lbe.sistemaponto.domain.solicitacao.SolicitacaoAjuste;
-
 public record DadosListagemFuncionario(Long id, String nome, String cpf, String telefone, String email) {
 
     /*

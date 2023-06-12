@@ -21,6 +21,7 @@ let dataCompletaAgora = dataHora.toISOString().split("T")[0];
 let horaCompletaAgora = dataHora.toTimeString().split(" ")[0];
 
 let ajustePonto = {
+  idPonto: idPontoParaAjuste,
   horarioEntrada1: "",
   horarioSaida1: "",
   horarioEntrada2: "",
@@ -115,8 +116,6 @@ fetch(`${URL}/api/solicitar-ajuste/${registroSolicitacaoAjuste}`, {
     }
   })
   .then((data) => {
-    idPontoParaAjuste = data.id;
-    ajustePonto.idPonto = idPontoParaAjuste;
     ajustePonto.horarioEntrada1 = data.horarioEntrada1;
     ajustePonto.horarioSaida1 = data.horarioSaida1;
     ajustePonto.horarioEntrada2 = data.horarioEntrada2;
@@ -283,14 +282,14 @@ function finalizaSolicitacao(respostaSolicitacao){
     "Content-Type": "application/json",
   };
 
-  fetch(`${URL}/api/solicitar-ajuste/${idPontoParaAjuste}`, {
+  fetch(`${URL}/api/solicitar-ajuste/${registroSolicitacaoAjuste}`, {
     method: "DELETE",
     headers: headers,
     body: JSON.stringify(respostaSolicitacao),
   })
     .then(function (response) {
       if (response.ok) {
-        return response.json();
+        alert("Solicitação finalizada com sucesso!");
       } else {
         throw new Error(
           "Ocorreu um erro ao finalizar a solicitação de ajuste."
@@ -298,12 +297,10 @@ function finalizaSolicitacao(respostaSolicitacao){
       }
     })
     .then(function (data) {
-      console.log(data);
       alert("Solicitação finalizada com sucesso!");
     })
     .catch(function (error) {
       console.log(error);
-      alert(error.message);
     });
     cancelarEdicao();
 }
@@ -334,12 +331,12 @@ function ajustarPonto(ajustePonto){
   alert("Ajuste do ponto realizado com sucesso!");
 })
 .catch(function (error) {
-  console.log(error);
-  alert(error.message);
+  console.log(error.message);
 });
 cancelarEdicao();
 
 }
+
 
 // Função para converter a data do formato yyyy-MM-dd para dd/MM/yyy
 function converterFormatoData(data) {

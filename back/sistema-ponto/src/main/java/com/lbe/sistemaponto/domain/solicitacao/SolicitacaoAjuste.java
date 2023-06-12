@@ -10,6 +10,7 @@ import java.time.LocalTime;
 @Table(name = "solicitacao_ajuste")
 @Entity(name = "Solicitacao")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -59,16 +60,4 @@ public class SolicitacaoAjuste {
         this.resposta = RespostaSolicitacao.valueOf("EM_ANALISE");
         this.ativo = true;
     }
-
-    public void finalizarSolicitacao(DadosResponstaSolicitacao dados) {
-        this.ativo = false;
-        this.idAdmin = dados.idAdmin();
-        this.horaCompleta = dados.horaCompleta();
-        this.resposta = dados.resposta();
-
-        if(dados.descricaoResposta() != null) {
-            this.descricaoResposta = dados.descricaoResposta();
-        }
-    }
-
 }

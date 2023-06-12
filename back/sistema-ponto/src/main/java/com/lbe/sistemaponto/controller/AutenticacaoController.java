@@ -31,7 +31,7 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity login(@RequestBody @Valid DadosAutenticacao dados) {
+    public ResponseEntity<Object> login(@RequestBody @Valid DadosAutenticacao dados) {
 
         /*
          * UsernamePasswordAuthenticationToken é DTO proprio do Spring que recebe o usuario e a senha.

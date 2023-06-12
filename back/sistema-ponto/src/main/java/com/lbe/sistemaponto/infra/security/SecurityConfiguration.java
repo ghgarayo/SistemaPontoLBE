@@ -39,7 +39,9 @@ public class SecurityConfiguration {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/funcionarios").permitAll() // DELETAR ESSA LINHA
+                .requestMatchers("/swagger-ui/**" , "/swagger-ui.**").permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
+//                .requestMatchers(HttpMethod.POST, "/api/funcionarios").permitAll() // DELETAR ESSA LINHA
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build(); // Cria o objeto do tipo SecurityFilterChain

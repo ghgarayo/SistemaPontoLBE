@@ -59,53 +59,5 @@ public class Ponto {
     this.latitudeEntrada1 = dados.latitude();
 
   }
-
-  public void atualizaPonto(DadosBatidaPonto dados) {
-
-    if (dados.idFuncionario() == this.idFuncionario && this.getHorarioSaida1() == null) {
-      this.horarioSaida1 =dados.horarioCompleto();
-      this.longitudeSaida1 = dados.longitude();
-      this.latitudeSaida1 = dados.latitude();
-      
-      return;
-    }
-
-    if (dados.idFuncionario() == this.idFuncionario && this.getHorarioEntrada2() == null) {
-      this.horarioEntrada2 = dados.horarioCompleto();
-      this.longitudeEntrada2 = dados.longitude();
-      this.latitudeEntrada2 = dados.latitude();
-      
-      return;
-    }
-
-    if (dados.idFuncionario() == this.idFuncionario && this.getHorarioSaida2() == null) {
-      this.horarioSaida2 =dados.horarioCompleto();
-      this.longitudeSaida2 = dados.longitude();
-      this.latitudeSaida2 = dados.latitude();
-      
-      return;
-    }
-
-    throw new Error("Já foram efetuados os registros para o dia " + dataCompleta.getDayOfMonth());
-  }
-
-  public void ajustePonto(DadosAjustePonto dados) {
-
-    if (dados.horarioEntrada1() != this.horarioEntrada1 || this.horarioEntrada1 == null) {
-      this.horarioEntrada1 = dados.horarioEntrada1();
-    }
-
-    if (dados.horarioSaida1() != this.horarioSaida1  || this.horarioSaida1 == null) {
-      this.horarioSaida1 = dados.horarioSaida1();
-    }
-
-    if (dados.horarioEntrada2() != this.horarioEntrada2  || this.horarioEntrada2 == null) {
-      this.horarioEntrada2 = dados.horarioEntrada1();
-    }
-
-    if (dados.horarioSaida2() != this.horarioSaida2  || this.horarioSaida2 == null) {
-      this.horarioSaida2 = dados.horarioSaida2();
-    }
-  }
 }
 

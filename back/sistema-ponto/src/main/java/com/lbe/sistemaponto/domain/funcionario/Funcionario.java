@@ -55,7 +55,7 @@ public class Funcionario implements UserDetails {
 
     public Funcionario(DadosCadastroFuncionario dados) {
         this.ativo = true;
-        this.isAdmin = false;
+        this.isAdmin = dados.isAdmin();
         this.nome = dados.nome();
         this.cpf = dados.cpf();
         this.rg = dados.rg();
@@ -84,6 +84,10 @@ public class Funcionario implements UserDetails {
         if (dados.endereco() != null) {
             this.endereco.atualizarInformacoes(dados.endereco());
         }
+    }
+
+    public void atualizarSenha(@Valid DadosRecuperacaoSenha dados){
+
     }
 
     public String inativar() {

@@ -1,0 +1,20 @@
+CREATE TABLE `registro_ponto` (
+                                  `id` bigint NOT NULL AUTO_INCREMENT,
+                                  `Id_Funcionario` bigint NOT NULL,
+                                  `data_completa` date NOT NULL,
+                                  `horario_entrada1` time DEFAULT NULL,
+                                  `latitude_entrada1` varchar(255) DEFAULT NULL,
+                                  `longitude_entrada1` varchar(255) DEFAULT NULL,
+                                  `horario_saida1` time DEFAULT NULL,
+                                  `latitude_saida1` varchar(255) DEFAULT NULL,
+                                  `longitude_saida1` varchar(255) DEFAULT NULL,
+                                  `horario_entrada2` time DEFAULT NULL,
+                                  `latitude_entrada2` varchar(255) DEFAULT NULL,
+                                  `longitude_entrada2` varchar(255) DEFAULT NULL,
+                                  `horario_saida2` time DEFAULT NULL,
+                                  `latitude_saida2` varchar(255) DEFAULT NULL,
+                                  `longitude_saida2` varchar(255) DEFAULT NULL,
+                                  PRIMARY KEY (`id`),
+                                  KEY `fk_registro_ponto_funcionario_id` (`Id_Funcionario`),
+                                  CONSTRAINT `fk_registro_ponto_funcionario_id` FOREIGN KEY (`Id_Funcionario`) REFERENCES `funcionarios` (`id`)
+)

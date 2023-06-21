@@ -17,11 +17,9 @@ public record DadosCadastroFuncionario(
     @NotBlank 
     String senha, 
     @NotBlank
-    @Pattern(regexp = "\\d{10,11}")
-    String telefone, 
+    String telefone,
     @NotBlank
-    @Pattern(regexp = "\\d{11}")
-    String cpf, 
+    String cpf,
     @NotBlank
     String rg,
     @Valid

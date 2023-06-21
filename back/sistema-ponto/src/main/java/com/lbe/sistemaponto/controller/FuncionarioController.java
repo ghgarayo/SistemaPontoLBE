@@ -29,7 +29,7 @@ public class FuncionarioController {
 
     @Autowired
     private FuncionarioRepository repository;
-    @Autowired
+
     private BCryptPasswordEncoder encoder;
 
     @PostMapping

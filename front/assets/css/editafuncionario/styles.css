@@ -1,50 +1,24 @@
+
 .main-container {
-  display: flex;
-  height: calc(100vh - 56px);
-}
-
-.content {
-  min-width: 90vw;
-  width: 90vw;
-  display: flex;
-  flex-direction: column;
-
+  /* height: calc(100vh - 56px); */
   height: fit-content;
-  margin: 2.5rem auto;
-
-  border-radius: 5px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
+
 
 .formulario-cadastro {
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 72px;
-  background-color: #012c6d;
-  padding: 1.5rem;
-  border: 2px solid #fba02e;
-  border-radius: 15px;
-  height: fit-content;
-  width: 50vw;
-  margin: auto;
-
-}
-
-.funcionario-info{`
-  grid-row: 1; 
-  grid-column:1;
-}
-
-.funcionario-endereco{
-  grid-row: 1; 
-  grid-column:2;
-}
-
-.form-buttons{
-  grid-row: 2;
-  grid-column: span 2;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  flex-direction: column;
+  background-color: #012c6d;
+  
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid #fba02e;
+  
 }
 
 .funcionario-info,
@@ -74,29 +48,32 @@ input[type="password"]{
   margin-top: 4px;
 }
 
-#rg,
-#cpf{
-  color: #FFF;
-}
-
-
-input[type="checkbox"] {
-  
-}
-
 .admin-container{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 4px;
+  margin-top: 12px;
+  width: max-content;
+
+  display:flex;
+  flex-direction: row;
   align-items: baseline;
-  margin-top: 12px
+  justify-content: center;
 }
+
+input[type="checkbox"]{
+  margin: 0 4px;
+}
+
+
+.form-buttons{
+  display:grid;
+  grid-gap: 0.5rem;
+}
+
 
 .botao-cadastro {
-  grid-row: 2;
+  grid-row: 1;
   grid-column: span 2;
   padding: 8px 16px;
-  width: 33%;
+  width: 175px;
   
   cursor: pointer;
   color: #FFF;
@@ -117,7 +94,7 @@ input[type="checkbox"] {
   grid-row: 2;
   grid-column: span 2;
   padding: 8px 16px;
-  width: 33%;
+  width: 175px;
   
   cursor: pointer;
   color: #FFF;
@@ -134,38 +111,159 @@ input[type="checkbox"] {
 }
 
 
-.form-buttons{
-  width: 35vw;
-  margin: 0 auto;
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .content{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 85vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1 / span 2;
+  }
+  
+  .botao-voltar{
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+
 }
 
 @media (min-width: 768px) and (max-width: 1024.55px) {
 
-
   .content{
-    min-width: 0px;
-    width: 70vw;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 60vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1 / span 2;
+  }
+  
+  .botao-voltar{
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+
+
+}
+
+@media (min-width: 1024.56px) and (max-width: 1440px) {
+  .content{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 55vw;
+    margin: 1rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1 / span 2;
+  }
+  
+  .botao-voltar{
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+
 }
 
 
-@media (min-width: 1024.56px) and (max-width: 1440.55px) {
-
+@media (min-width: 1440.01px) {
+  
   .content{
-    min-width: 0px;
-    width: 50vw;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
 
-}
-
-@media (min-width: 1440.56px) {
-  .side-menu{
-    max-width: 15vw;
+  .formulario-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    height: fit-content;
+    width: 50vw;
+    margin: 2rem auto;  
+  }  
+  
+  .form-buttons{
+    display:grid;
+    grid-row: 2;
+    grid-column: span 2;
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
   }
 
-  .content{
-    min-width: 0px;
-    width: 50vw;
+  .botao-cadastrar{
+    grid-row: 1;
+    grid-column: 1 / span 2;
+  }
+  
+  .botao-voltar{
+    grid-row: 2;
+    grid-column: 1 / span 2;
   }
 
 }

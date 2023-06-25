@@ -65,9 +65,9 @@ function createHTML(data) {
         <label for="observacoes">Observações :</label>
         <textarea id="observacoes" name="observacoes"></textarea>
       </div>
-      <div class="form-field-buttons">
-        <button type="submit" onclick="submitRequestForApproval()">Enviar</button>
-        <button type="button" onclick="window.location.href='relatorioponto.html'">Cancelar</button>
+      <div class="form-buttons">
+        <button type="submit" class="botao-cadastro" onclick="submitRequestForApproval()">Enviar</button>
+        <button type="button" class="botao-voltar" onclick="window.location.href='relatorioponto.html'">Cancelar</button>
       </div>
     </form>
   `;

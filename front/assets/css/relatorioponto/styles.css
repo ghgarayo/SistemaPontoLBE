@@ -88,12 +88,14 @@ body {
   text-align: center;
   margin: auto;
   color: #fff;
+  font-size: 0.8rem;
 }
 
 .linha-tabela {
   display: flex;
   margin: auto;
   padding: 4px 0;
+  
 }
 
 .linha-tabela:nth-child(even) {
@@ -102,12 +104,12 @@ body {
 
 .value {
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   font-weight: 500;
 
   margin: auto;
   max-width: fit-content;
-  padding: 2px 5px;
+  padding: 2px 3px;
 
   background-color: #fff;
   border: 1px solid #ccc;

@@ -96,11 +96,6 @@ function fazerSolicitacao(idFuncionario, mes, ano) {
 function createHTML(data) {
   let html = `
   <table class="tabela-registro-ponto">
-    <thead class="titulo-tabela">
-      <tr>
-        <th colspan="${columnItems.length + 1}"><h1>Registro de Ponto</h1></th>
-      </tr>
-    </thead>
     <thead>
       <tr class="header-tabela">
   `;

@@ -46,7 +46,7 @@ let criarEditor = (data) => {
           <input type="tel" id="telefone" name="telefone" value="${data.telefone}" />
             
           <div class="admin-container">
-            <label for="isAdmin">Cadastrar como administrador:</label>
+            <label for="isAdmin">Tornar administrador(a):</label>
             <input type="checkbox" id="isAdmin" name="isAdmin" />
           </div>
 
@@ -67,13 +67,33 @@ let criarEditor = (data) => {
 
           <label for="uf">UF:</label>
           <input type="text" id="uf" name="uf" value="${data.endereco.uf}" />
-
+`
+if(!data.endereco.numero){
+ html += `
+          <label for="numero">Número:</label>
+          <input type="text" id="numero" name="numero"/>
+          `
+} else {
+  html += `
           <label for="numero">Número:</label>
           <input type="text" id="numero" name="numero" value="${data.endereco.numero}"/>
+          `
+}
 
+if(!data.endereco.complemento){
+ html += `
           <label for="complemento">Complemento:</label>
-          <input type="text" id="complemento" name="complemento value="${data.endereco.complemento}" />
-        </div>
+          <input type="text" id="complemento" name="complemento"/>
+          </div>
+          `
+} else {
+  html += `
+          <label for="complemento">Complemento:</label>
+          <input type="text" id="complemento" name="complemento" value="${data.endereco.complemento}"/>
+          </div>
+          `
+}
+html += `
         <div class="form-buttons">
           <button 
               type="button" 

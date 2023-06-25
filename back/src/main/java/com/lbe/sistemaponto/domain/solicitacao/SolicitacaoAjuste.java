@@ -24,7 +24,7 @@ public class SolicitacaoAjuste {
     private Long idPonto;
     @Column(name = "ID_Funcionario")
     private Long idFuncionario;
-    @Column(name = "Aprovado_Por")
+    @Column(name = "Finalizado_Por")
     private Long idAdmin;
     @Column(name = "Atualizado_Em_Hora")
     private LocalTime horaCompleta;

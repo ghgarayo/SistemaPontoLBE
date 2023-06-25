@@ -4,7 +4,6 @@ if (!token) {
 
 let idFuncionario = usuario.id;
 sessionStorage.setItem("Funcionario", idFuncionario);
-console.log(idFuncionario);
 
 const columnItems = [
   { title: "Data", key: "dataCompleta" },
@@ -31,7 +30,6 @@ fetch(`${URL}/api/registro-ponto/${idFuncionario}/${anoAtual}/${mesAtual}`, {
   })
   .then((data) => {
     document.querySelector(".content").innerHTML = createHTML(data);
-    // document.querySelector(".content-por-funcionario").innerHTML = createHTML(data);
   })
   .catch((error) => {
     console.log(error);
@@ -42,11 +40,6 @@ fetch(`${URL}/api/registro-ponto/${idFuncionario}/${anoAtual}/${mesAtual}`, {
 function createHTML(data) {
   let html = `
 <table class="tabela-registro-ponto">
-  <thead class="titulo-tabela">
-    <tr>
-      <th colspan="${columnItems.length + 1}"><h1>Registro de Ponto</h1></th>
-    </tr>
-  </thead>
   <thead>
     <tr class="header-tabela">
 `;
@@ -75,7 +68,7 @@ function createHTML(data) {
       }</td>`;
     });
     html += `<td class="ponto-actions-container">
-                  <button class="botao-ajuste" value=${item.id} onclick="redirectTo(this.value)">Ajustar</button>
+                  <button class="botao-ajuste" value=${item.id} onclick="redirectTo(this.value)">Ajuste</button>
                   </td>`;
     html += `</tr>`;
   });

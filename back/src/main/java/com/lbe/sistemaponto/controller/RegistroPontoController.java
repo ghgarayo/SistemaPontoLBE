@@ -40,27 +40,38 @@ public class RegistroPontoController {
     }
 
     @GetMapping("/{idFuncionario}/{ano}/{mes}")
-    public ResponseEntity<Object> listarRegistrosPorLogin(@PathVariable Long idFuncionario,
-            @PathVariable int ano, @PathVariable int mes,
+    public ResponseEntity<Object> listarRegistrosPorLogin(
+            @PathVariable Long idFuncionario,
+            @PathVariable int ano,
+            @PathVariable int mes,
             @PageableDefault(size = 30, sort = { "dataCompleta" }) Pageable paginacao) {
+
         var registrosPonto = repository.findByIdFuncionario(idFuncionario, paginacao)
                 .map(DadosListagemCompletaPonto::new)
                 .getContent();
-
-        System.out.println(registrosPonto);
 
         var registrosFiltrados = filtrarRegistrosPorAnoEMes(registrosPonto, ano, mes);
 
         return ResponseEntity.ok(registrosFiltrados);
     }
 
-    private List<DadosListagemCompletaPonto> filtrarRegistrosPorAnoEMes(List<DadosListagemCompletaPonto> registros,
-            int ano, int mes) {
-        return registros.stream().filter(registro -> {
-            YearMonth data = YearMonth.from(registro.dataCompleta());
-            return data.getYear() == ano && data.getMonthValue() == mes;
-        }).collect(Collectors.toList());
+    private List<DadosListagemCompletaPonto> filtrarRegistrosPorAnoEMes(
+            List<DadosListagemCompletaPonto> registros,
+            int ano,
+            int mes) {
+
+        var listaRegistroPonto = registros.stream()
+                .filter(registro -> {
+                    YearMonth data = YearMonth.from(registro.dataCompleta());
+                    return data.getYear() == ano && data.getMonthValue() == mes;
+                })
+                .collect(Collectors.toList());
+
+        System.out.println(listaRegistroPonto);
+
+        return listaRegistroPonto;
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> ajustePonto(@PathVariable Long id, @RequestBody DadosAjustePonto dados) {

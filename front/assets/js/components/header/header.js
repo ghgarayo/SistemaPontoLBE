@@ -36,7 +36,6 @@ function clearStorageAndRedirect() {
 let header = () => {
   let html = `
                 <img class = \"menu-toggler\" src=\"/assets/img/menu.svg\" onClick="handleSideMenu()">
-                <img class =  \"header-logo" src=\"/assets/img/alerta.svg\"> 
              `
 
   return html;

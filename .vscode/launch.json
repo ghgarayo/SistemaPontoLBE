@@ -2,6 +2,12 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SistemaPontoApplication",
+      "request": "launch",
+      "mainClass": "com.lbe.sistemaponto.SistemaPontoApplication"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-SistemaPontoApplication<sistema-ponto>",
       "request": "launch",
       "cwd": "${workspaceFolder}",

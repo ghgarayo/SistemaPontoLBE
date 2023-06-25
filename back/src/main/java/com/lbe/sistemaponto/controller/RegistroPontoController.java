@@ -46,6 +46,9 @@ public class RegistroPontoController {
         var registrosPonto = repository.findByIdFuncionario(idFuncionario, paginacao)
                 .map(DadosListagemCompletaPonto::new)
                 .getContent();
+
+        System.out.println(registrosPonto);
+
         var registrosFiltrados = filtrarRegistrosPorAnoEMes(registrosPonto, ano, mes);
 
         return ResponseEntity.ok(registrosFiltrados);
